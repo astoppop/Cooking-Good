@@ -11,7 +11,7 @@ $(window).ready(() => {
     const animations = [
         [
             [impactBg, { bottom: '-100vh' }, { bottom: '0' }, 500, 0],
-            // [],
+            [title, { 'font-size': '20vw' }, { 'font-size': '10vw' }, 400, 100],
         ],
     ];
 
