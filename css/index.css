@@ -1,0 +1,54 @@
+html, body {
+    margin: 0;
+}
+
+h1, p {
+    margin: 0;
+}
+
+.section {
+    width: 100%;
+    height: 100vh;
+}
+
+.cover {
+    background-color: lightblue;
+}
+
+.cover-text {
+    position: absolute;
+    left: 5vw;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+}
+
+.cover-text h1 {
+    color: #ffffff;
+    font-size: 10vw;
+}
+
+.cover-text p {
+    color: #ffffff;
+    font-size: 2vw;
+}
+
+.cover .underlay {
+    position: absolute;
+    width: 40vw;
+    height: 80vh;
+    right: 5vw;
+    top: 10vh;
+
+    background-color: lightcoral;
+    border-radius: 20% 70% 10% 70%;
+    pointer-events: none;
+}
+
+.cover .canvas-wrapper {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    right: 0;
+    top: 0;
+}

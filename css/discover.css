@@ -1,0 +1,117 @@
+body {
+    overflow: hidden;
+}
+
+.background {
+    background-image: radial-gradient(circle, white, black);
+}
+.background.canvas-wrapper canvas {
+    /* filter: blur(1px); */
+}
+
+.title {
+    position: absolute;
+    width: 100vh;
+    right: 0;
+
+    translate: 100%;
+    transform-origin: top left;
+    transform: rotate(90deg);
+
+    pointer-events: none;
+}
+
+.title h1 {
+    display: flex;
+    justify-content: space-evenly;
+    margin: 0;
+
+    text-align: center;
+    font-family: 'Sofia Sans Extra Condensed', sans-serif;
+    font-size: 35vh;
+}
+
+.right-panel {
+    position: absolute;
+    padding: 30px;
+    width: 25vw;
+    height: 80vh;
+
+
+    top: 10vh;
+    /* start off screen */
+    right: -100vw;
+
+    pointer-events: none;
+
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(5px);
+}
+
+.popup {
+    position: absolute;
+    bottom: 10px;
+    
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+
+    width: min(500px, 80vw);
+    height: auto;
+    border-radius: 10px;
+
+    background: #ffffff;
+    text-align: center;
+
+    overflow: hidden;
+}
+
+.popup .close-bg {
+    position: absolute;
+    top: -50px;
+    right: -50px;
+
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+
+    background-color: lightcoral;
+}
+
+.close {
+    position: absolute;
+    top: 70px;
+    left: 15px;
+
+    width: 30px;
+    height: 2px;
+    background-color: #000000;
+}
+
+.close:before {
+    content: "";
+
+    width: 100%;
+    height: 100%;
+    display: block;
+
+    background-color: #000000;
+}
+
+.close {transform: rotate(-45deg);}
+.close:before {transform: rotate(90deg);}
+
+.canvas-wrapper {
+    z-index: -1;
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+}
+
+.canvas-wrapper canvas {
+    position: absolute;
+    bottom: 0;
+}
