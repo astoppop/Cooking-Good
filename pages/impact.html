@@ -4,8 +4,13 @@
     <head>
         <link rel="stylesheet" href="../css/nav.css">
         <link rel="stylesheet" href="../css/impact.css">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
         
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+        <script src="https://code.jquery.com/color/jquery.color-2.1.2.min.js"></script>
         <script src="../js/nav.js"></script>
         <script src="../js/impact.js"></script>
     </head>
@@ -14,14 +19,14 @@
         <div class="nav">
             <div class="hamburger-bg"><div class="hamburger"></div></div>
             <div class="nav-links-wrapper">
-                <div class="nav-links hidden">
+                <div class="nav-links" style="display: none;">
                     <div class="link home"></div>
                     <div class="link discover"></div>
                     <div class="link recipes"></div>
                     <div class="link impact"></div>
                 </div>
             </div>
-            <div class="cutting-point hidden"></div>
+            <div class="cutting-point" style="display: none;"></div>
             <div class="cutting-point-trail"></div>
             <div class="curtains">
                 <div class="top-curtain"></div>
@@ -33,8 +38,39 @@
                 <video class="cooking-video" src="../assets/video/cooking.mp4" autoplay loop muted preload="metadata"></video>
                 <div class="blur"></div>
             </div>
-            <div class="impact-bg"></div>
-            <h1 class="title">The Impact<br>of Cooking</h1>
+            <div class="impact-bg">
+                <p class="impact-text">
+                    Cooking has a positive impact on our daily lives, health, and the environment.
+                    It enables us to nourish ourselves and our loved ones, brings people together over meals, and can help us maintain a balanced diet.
+                    Additionally, by cooking mindfully and using sustainable practices, we can reduce our environmental impact and contribute to a healthier planet.
+                </p>
+                <div class="img-stack">
+                    <!-- start everything hidden -->
+                    <img class="mask-reveal" style="display: none;" src="../assets/img/stock-esque/cooking1.jpg">
+                    <img class="mask-reveal" style="display: none;" src="../assets/img/stock-esque/cooking2.jfif">
+                    <img class="mask-reveal" style="display: none;" src="../assets/img/stock-esque/cooking3.jpg">
+                    <!-- filter invert to make the black icon a greyish white -->
+                    <img style="opacity: 0; filter: invert(90%);" class="click-icon" src="../assets/img/click.png">
+                    <div class="line"></div>
+                </div>
+            </div>
+            <h1 class="impact-title">IMPACT</h1>
+            <div class="health-bg">
+                <p class="health-text">
+                    Health and cooking are closely linked, as the food we eat has a significant impact on our overall health and wellbeing.
+                    By choosing fresh, whole foods and preparing them in a healthy way, we can provide our bodies with the nutrients they need to function optimally.
+                    Cooking at home also allows us to control the ingredients and portion sizes, which can help us maintain a healthy weight and reduce our risk of
+                    chronic diseases such as heart disease, diabetes, and certain cancers. By making healthy cooking a priority, we can improve our health and enjoy
+                    delicious, nourishing meals at the same time.
+                </p>
+                <div class="img-stack">
+                    <img class="mask-reveal" style="display: none;" src="../assets/img/stock-esque/fruit-plate.jpg">
+                    <img class="mask-reveal" style="display: none;" src="../assets/img/stock-esque/assorted_nuts.jfif">
+                    <img class="mask-reveal" style="display: none;" src="../assets/img/stock-esque/overnight_oats.jfif">
+                    <img style="opacity: 0;" class="click-icon" src="../assets/img/click.png">
+                </div>
+            </div>
+            <h1 class="health-title mask-reveal">Health</h1>
         </div>
     </body>
 </html>

@@ -1,3 +1,10 @@
+:root {
+    --main-color: #F5F5DC;
+    --secondary-color: #FFDB58;
+    --main-text-color: #000000;
+    --secondary-text-color: #8B4513;
+}
+
 html, body {
     margin: 0;
 }
@@ -12,7 +19,7 @@ h1, p {
 }
 
 .cover {
-    background-color: lightblue;
+    background-color: var(--main-color);
 }
 
 .cover-text {
@@ -24,12 +31,12 @@ h1, p {
 }
 
 .cover-text h1 {
-    color: #ffffff;
+    color: var(--main-text-color);
     font-size: 10vw;
 }
 
 .cover-text p {
-    color: #ffffff;
+    color: var(--secondary-text-color);
     font-size: 2vw;
 }
 
@@ -40,7 +47,7 @@ h1, p {
     right: 5vw;
     top: 10vh;
 
-    background-color: lightcoral;
+    background-color: var(--secondary-color);
     border-radius: 20% 70% 10% 70%;
     pointer-events: none;
 }

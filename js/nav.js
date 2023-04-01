@@ -1,4 +1,4 @@
-const cutAnimationTime = 250;
+const cutAnimationTime = 500;
 const curtainsAnimationTime = 500;
 const curtainsStartDelay = 1000;
 
@@ -17,12 +17,12 @@ $(window).ready(() => {
                 $('div', curtains).css('rotate', `${i}deg`);
             }, curtainsAnimationTime / 90 * -i);
         }
-        setTimeout(() => {curtains.addClass('hidden');}, curtainsAnimationTime);
+        setTimeout(() => {curtains.show();}, curtainsAnimationTime);
     }, curtainsStartDelay);
 
     hamburgerBg.click(() => {
         hamburger.toggleClass('toggle');
-        navLinks.toggleClass('hidden');
+        navLinks.toggle();
     });
 
     const homeLink = $('.link.home');
@@ -71,9 +71,10 @@ $(window).ready(() => {
     const createParticle = () => {
         let particle = $('<div>');
         trail.append(particle);
+        console.log($(window).scrollTop());
         particle.css({
             left: cuttingPoint.offset().left,
-            top: cuttingPoint.offset().top + cuttingPoint.height() / 2 - particle.height() / 2,
+            top: cuttingPoint.offset().top + cuttingPoint.height() / 2 - particle.height() / 2 - $(window).scrollTop(),
         });
         particle.animate({
             width: '1px',
@@ -81,7 +82,7 @@ $(window).ready(() => {
         }, {
             duration: 100,
             easing: 'linear',
-            step: () => {particle.css({ top: cuttingPoint.offset().top + cuttingPoint.height() / 2 - particle.height() / 2 })},
+            step: () => {particle.css({ top: cuttingPoint.offset().top + cuttingPoint.height() / 2 - particle.height() / 2 - $(window).scrollTop() })},
         });
         setTimeout(() => {
             particle.remove();
@@ -97,9 +98,9 @@ $(window).ready(() => {
 
     const cut = (text, link) => {
         let [top, bottom] = $('p', text).children();
-        cuttingPoint.removeClass('hidden');
+        cuttingPoint.show();
         cuttingPoint.css({
-            top: `${text.offset().top + text.height() * 0.6 - cuttingPoint.height() / 2}px`,
+            top: `${text.offset().top + text.height() * 0.6 - cuttingPoint.height() / 2 - $(window).scrollTop()}px`,
             right: `-${cuttingPoint.width()}px`,
         });
         cuttingPoint.animate({
@@ -116,7 +117,7 @@ $(window).ready(() => {
         });
         
 		setTimeout(() => {
-			curtains.removeClass('hidden');
+			curtains.show();
             for (let i = -90; i <= 0; i += 0.1) {
                 setTimeout(() => {
                     $('div', curtains).css('rotate', `${i}deg`);
