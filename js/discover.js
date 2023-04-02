@@ -23,7 +23,7 @@ $(window).ready(() => {
 
     popup = $('.popup');
     popupCloseBg = $('.close-bg');
-    popupCloseBg.click(() => {popup.addClass('hidden');});
+    popupCloseBg.click(() => { popup.addClass('hidden'); });
 
     title = $('.title');
     let titleH = $('.title h1');
@@ -35,23 +35,23 @@ $(window).ready(() => {
 });
 
 let firstChange = true;
-const removeTitle = () => {
-    title.animate({right: '-35vh'}, 200);
-    setTimeout(() => {
-        rightPanel.animate({right: '50px'}, 200);
-    }, 300);
-}
 const changeInformation = (marker) => {
-    rightPanelTitle.text(discoverJson[marker].title);
-    rightPanelText.text(discoverJson[marker].description);
+    rightPanel.animate({ right: '-100vw' }, {
+        duration: 300,
+        complete: () => {
+            rightPanelTitle.text(discoverJson[marker].title);
+            rightPanelText.text(discoverJson[marker].description);
+            rightPanel.animate({ right: '50px' }, 300);
+        },
+    });
 }
 
 export const onMarkerClick = (marker) => {
     targetBackgroundColor = discoverJson[marker].colors;
     imagePath = `../assets/img/discover/${discoverJson[marker].title}`;
     if (firstChange) {
-        removeTitle();
-        setTimeout(changeInformation, 500, marker);
+        title.animate({right: '-35vmax'}, 300);
         firstChange = false;
-    } else {changeInformation(marker);}
+    }
+    changeInformation(marker);
 };

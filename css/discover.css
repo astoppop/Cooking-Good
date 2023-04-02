@@ -33,14 +33,14 @@ body {
 
 .right-panel {
     position: absolute;
-    padding: 30px;
+    padding: 20px;
     width: 25vw;
-    height: 80vh;
+    height: fit-content;
 
-
-    top: 10vh;
     /* start off screen */
     right: -100vw;
+    top: 50%;
+    transform: translateY(-50%);
 
     pointer-events: none;
 
@@ -49,6 +49,8 @@ body {
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     border: 2px solid rgba(255, 255, 255, 0.5);
     backdrop-filter: blur(5px);
+
+    transition: height 0.3s ease-in-out;
 }
 
 .popup {
