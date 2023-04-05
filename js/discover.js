@@ -1,6 +1,7 @@
 export let targetBackgroundColor = [[0, 0, 0], [255, 255, 255], [0, 0, 0]];
 export let imagePath = '';
 
+// decided to use json to make it easier to maintain and update
 let discoverJson;
 fetch('../assets/discover.json')
     .then(response => {return response.json();})
@@ -14,7 +15,6 @@ let popup;
 let popupCloseBg;
 
 let title;
-const discoverTitleText = 'Discover';
 
 $(window).ready(() => {
     rightPanel = $('.right-panel');
@@ -23,10 +23,17 @@ $(window).ready(() => {
 
     popup = $('.popup');
     popupCloseBg = $('.close-bg');
-    popupCloseBg.click(() => { popup.addClass('hidden'); });
+    popupCloseBg.click(() => {
+        popup.animate({ opacity: 0 }, {
+            duration: 500,
+            complete: () => { popup.hide(); },
+        })
+    });
 
     title = $('.title');
     let titleH = $('.title h1');
+    let discoverTitleText = titleH.text();
+    titleH.empty();
     for (let letter of discoverTitleText) {
         let span = $('<span>')
         span.text(letter);

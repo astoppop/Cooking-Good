@@ -7,7 +7,7 @@ body {
 
     position: fixed;
     width: 100%;
-    height: 100vh;
+    height: 100lvh;
 
     top: 0;
 
@@ -27,8 +27,8 @@ body {
     width: 200px;
     height: 200px;
     
-    background: rgba(200, 200, 200, 0.3);
-    border: 2px solid rgba(200, 200, 200, 0.5);
+    background: rgba(150, 150, 150, 0.4);
+    border: 2px solid rgba(100, 100, 100, 0.5);
     border-radius: 50%;
     transition: 0.5s ease-in-out;
     backdrop-filter: blur(3px);
@@ -52,10 +52,10 @@ body {
     top: 135px;
 
     width: 30px;
-    height: 2px;
+    height: 5px;
     display: block;
 
-    background-color: #69D2e7;
+    background-color: lightblue;
     transition: 0.5s ease-in-out;
 }
 
@@ -72,7 +72,7 @@ body {
     height: 100%;
     display: block;
 
-    background-color: #69d2e7;
+    background-color: lightblue;
     transition: 0.5s ease-in-out;
 }
 
@@ -98,30 +98,42 @@ body {
 }
 
 .nav-links {
+    z-index: 9997;
+    position: fixed;
+    width: 100%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
     pointer-events: auto;
 }
 
-.nav-links div p span.bottom {
+.link {
+    margin: 0;
+    font-size: max(50px, 3rem);
+    text-align: center;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.link:hover {
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.link span {
+    display: inline-block;
+}
+
+.link span.bottom {
     position: absolute;
     transform: translateX(-100%);
 }
 
-.nav-links span {
-    display: inline-block;
-}
-
-.nav-links div p span.top span {
+.link span.top span {
     clip-path: polygon(0 0, 100% 0, 100% 60%, 0 60%);
 }
 
-.nav-links div p span.bottom span {
+.link span.bottom span {
     clip-path: polygon(0 60%, 100% 60%, 100% 100%, 0 100%);
-}
-
-.link p {
-    margin: 0;
-    font-size: 3vw;
-    cursor: pointer;
 }
 
 .cutting-point {
@@ -162,13 +174,13 @@ body {
 }
 
 .top-curtain {
-	background-color: green;
+	background-color: lightblue;
 	clip-path: polygon(0 0, 100% 0, 100% 50%, 0 50%);
 	transform-origin: left center;
 }
 
 .bottom-curtain {
-	background-color: black;
+	background-color: lightcoral;
 	clip-path: polygon(0 50%, 100% 50%, 100% 100%, 0 100%);
 	transform-origin: right center;
 }

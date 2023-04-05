@@ -1,12 +1,19 @@
 body {
-    overflow: hidden;
+    position: fixed;
+    width: 100%;
+    height: 100vh;
 }
 
-.background {
-    background-image: radial-gradient(circle, white, black);
+h1, p {
+    margin: 0;
 }
-.background.canvas-wrapper canvas {
-    /* filter: blur(1px); */
+
+.background-gradient {
+    z-index: -1;
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    background-image: radial-gradient(circle, #ffffff, lightcoral 200%);
 }
 
 .title {
@@ -19,6 +26,7 @@ body {
     transform: rotate(90deg);
 
     pointer-events: none;
+    display: none;
 }
 
 .title h1 {
@@ -27,8 +35,8 @@ body {
     margin: 0;
 
     text-align: center;
-    font-family: 'Sofia Sans Extra Condensed', sans-serif;
-    font-size: 35vh;
+    font-family: 'Oswald', sans-serif;
+    font-size: 30vh;
 }
 
 .right-panel {
@@ -44,19 +52,29 @@ body {
 
     pointer-events: none;
 
-    background: rgba(255, 255, 255, 0.4);
+    /* glassmorphism properties */
+    background: rgba(255, 255, 255, 0.5);
     border-radius: 16px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    border: 2px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+    border: 2px solid rgba(255, 255, 255, 0.6);
     backdrop-filter: blur(5px);
+}
 
-    transition: height 0.3s ease-in-out;
+.right-panel h1 {
+    font-family: 'Oswald', sans-serif;
+    font-size: 3rem;
+}
+
+.right-panel p {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.5rem;
 }
 
 .popup {
     position: absolute;
     bottom: 10px;
     
+    padding: 20px;
     margin: 0 auto;
     left: 0;
     right: 0;
@@ -65,9 +83,14 @@ body {
     height: auto;
     border-radius: 10px;
 
-    background: #ffffff;
-    text-align: center;
+    /* more glassmorphism */
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 16px;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(5px);
 
+    text-align: center;
     overflow: hidden;
 }
 
@@ -81,6 +104,7 @@ body {
     border-radius: 50%;
 
     background-color: lightcoral;
+    cursor: pointer;
 }
 
 .close {
@@ -113,7 +137,14 @@ body {
     height: 100vh;
 }
 
+.background.canvas-wrapper { display: none; }
+
 .canvas-wrapper canvas {
     position: absolute;
     bottom: 0;
+}
+
+@media only screen and (min-width: 960px) {
+    .background.canvas-wrapper { display: initial; }
+    .title { display: initial; }
 }

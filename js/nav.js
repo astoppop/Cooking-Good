@@ -2,6 +2,9 @@ const cutAnimationTime = 500;
 const curtainsAnimationTime = 500;
 const curtainsStartDelay = 1000;
 
+// would like to construct nav bar in this file as well instead of including boilerplate for every html file
+// but curtains must be in html file otherwise there is a split second between loading where there are no curtains
+
 $(window).ready(() => {
     const nav = $('.nav');
     const hamburgerBg = $('.hamburger-bg');
@@ -17,33 +20,51 @@ $(window).ready(() => {
                 $('div', curtains).css('rotate', `${i}deg`);
             }, curtainsAnimationTime / 90 * -i);
         }
-        setTimeout(() => {curtains.show();}, curtainsAnimationTime);
+        setTimeout(() => { curtains.show(); }, curtainsAnimationTime);
     }, curtainsStartDelay);
 
     hamburgerBg.click(() => {
         hamburger.toggleClass('toggle');
-        navLinks.toggle();
+        // mask reveal in and fade out
+        if (navLinks.is(':hidden')) {
+            for (let link of navLinks.children()) {
+                $(link).css({ opacity: 1 });
+                // adjusted maskReveal from impact.js with obsolete parts deleted
+                $({ x: 100 }).animate({ x: 0 }, {
+                    duration: 500,
+                    step: (val) => {
+                        $(link).css({ 'clip-path': `polygon(0 ${val}%, 100% ${val}%, 100% 100%, 0 100%)` });
+                    },
+                });
+            }
+            navLinks.toggle();
+        } else {
+            for (let link of navLinks.children()) {
+                $(link).animate({ opacity: 0 }, 200);
+            }
+            setTimeout(() => { navLinks.toggle(); }, 200);
+        }
     });
 
     const homeLink = $('.link.home');
     const discoverLink = $('.link.discover');
-    const recipesLink = $('.link.recipes');
+    const ingredientsLink = $('.link.ingredients');
     const impactLink = $('.link.impact');
 
-    const homeLinkText = 'Home';
-    const discoverLinkText = 'Discover';
-    const recipesLinkText = 'Recipes';
-    const impactLinkText = 'Impact';
-
-    const createNavP = (nav, text) => {
-        let p = $('<p>');
+    // convert a div's text into two spans with the same text
+    const prepareParagraphCut = (p) => {
+        let text = p.text();
+        p.empty();
         p.attr('id', text);
+
         let topSpan = $('<span>');
         topSpan.addClass('top');
         topSpan.attr('id', text);
+
         let bottomSpan = $('<span>');
         bottomSpan.addClass('bottom');
         bottomSpan.attr('id', text);
+
         p.append(topSpan);
         p.append(bottomSpan);
 
@@ -59,19 +80,16 @@ $(window).ready(() => {
             topSpan.append(top);
             bottomSpan.append(bottom);
         }
-
-        nav.append(p);
     };
-
-    createNavP(homeLink, homeLinkText);
-    createNavP(discoverLink, discoverLinkText);
-    createNavP(recipesLink, recipesLinkText);
-    createNavP(impactLink, impactLinkText);
+    
+    prepareParagraphCut(homeLink);
+    prepareParagraphCut(discoverLink);
+    prepareParagraphCut(ingredientsLink);
+    prepareParagraphCut(impactLink);
 
     const createParticle = () => {
         let particle = $('<div>');
         trail.append(particle);
-        console.log($(window).scrollTop());
         particle.css({
             left: cuttingPoint.offset().left,
             top: cuttingPoint.offset().top + cuttingPoint.height() / 2 - particle.height() / 2 - $(window).scrollTop(),
@@ -97,7 +115,7 @@ $(window).ready(() => {
     };
 
     const cut = (text, link) => {
-        let [top, bottom] = $('p', text).children();
+        let [top, bottom] = text.children();
         cuttingPoint.show();
         cuttingPoint.css({
             top: `${text.offset().top + text.height() * 0.6 - cuttingPoint.height() / 2 - $(window).scrollTop()}px`,
@@ -137,8 +155,8 @@ $(window).ready(() => {
             case 'Discover':
                 cut(discoverLink, './discover.html');
                 return;
-            case 'Recipes':
-                cut(recipesLink, './recipes.html');
+            case 'Ingredients':
+                cut(ingredientsLink, './ingredients.html');
                 return;
             case 'Impact':
                 cut(impactLink, './impact.html');

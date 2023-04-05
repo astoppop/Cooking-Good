@@ -7,24 +7,28 @@ import { onMarkerClick } from './discover.js';
 
 const scene = new Scene();
 
+const clamp = (num, min, max) => Math.min(Math.max(num, min), max);
+
 const camera = new PerspectiveCamera(45, $(window).innerWidth() / $(window).innerHeight(), 0.1, 1000);
-camera.position.set(0, 0, planetRadius * 5 / Math.min(1.5, camera.aspect));
-const cameraDist = camera.position.distanceTo(new Vector3(0, 0, 0));
+camera.position.set(0, 0, planetRadius * 5 / clamp(camera.aspect, 1, 1.8));
+console.log(camera.aspect);
+let cameraDist = camera.position.distanceTo(new Vector3(0, 0, 0));
+console.log(camera.aspect);
 
 const renderer = new WebGLRenderer({ antialias: true, alpha: true });
 renderer.setSize($(window).innerWidth(), $(window).innerHeight());
-
+console.log(camera.aspect);
 $(window).resize(() => {
     camera.aspect = $(window).innerWidth() / $(window).innerHeight();
-    camera.position.set(0, planetRadius * 1.5, planetRadius * 5 / Math.min(1.5, camera.aspect));
-
+    camera.position.set(0, 0, planetRadius * 5 / clamp(camera.aspect, 1, 1.8));
+    cameraDist = camera.position.distanceTo(new Vector3(0, 0, 0));
     camera.updateProjectionMatrix();
     renderer.setSize($(window).innerWidth(), $(window).innerHeight());
 });
 
 renderer.outputEncoding = sRGBEncoding;
-renderer.physicallyCorrectLights = true;
-$(window).ready(() => {$('.earth.canvas-wrapper').append(renderer.domElement);});
+// renderer.physicallyCorrectLights = true;
+$(window).ready(() => { $('.earth.canvas-wrapper').append(renderer.domElement); });
 
 const controls = new OrbitControls(camera, renderer.domElement);
 controls.dampingFactor = 0.1;
@@ -32,11 +36,28 @@ controls.enableDamping = true;
 controls.enableZoom = false;
 controls.enablePan = false;
 
-scene.add(new AmbientLight(new Color('#FFFFFF'), 2));
+const lerp = (start, end, t) => { return start * (1 - t)  + end * t; };
+let velocity = 0;
+$(window).on('wheel', (event) => {
+    velocity -= event.originalEvent.deltaY;
+    velocity = clamp(velocity, -250, 250);
+});
+const adjustFromScroll = () => {
+    let cameraXZDist = Math.sqrt(camera.position.x ** 2 + camera.position.z ** 2);
+    let angle = Math.atan2(camera.position.z, camera.position.x);
+    let cameraY = camera.position.y;
+    angle += velocity / 1000;
+    camera.position.set(cameraXZDist * Math.cos(angle), cameraY, cameraXZDist * Math.sin(angle));
+    velocity = lerp(velocity, 0, 0.2);
+    requestAnimationFrame(adjustFromScroll);
+};
+requestAnimationFrame(adjustFromScroll);
+
+scene.add(new AmbientLight(new Color('#FFFFFF'), 0.8));
 
 let sphere = new Mesh(
     new SphereGeometry(planetRadius, 100, 100),
-    new MeshPhysicalMaterial({map: await new TextureLoader().loadAsync('../assets/img/earth_map.jpg')}),
+    new MeshPhysicalMaterial({ map: await new TextureLoader().loadAsync('../assets/img/earth_map.jpg') }),
 );
 scene.add(sphere);
 
@@ -95,11 +116,12 @@ const raycaster = new Raycaster();
 const mouse = new Vector2();
 export const lerpMouse = new Vector2();
 
+// update lerp mouse
 const updateLerpMouse = () => {
     lerpMouse.lerp(mouse, 0.05);
-    setTimeout(updateLerpMouse, 10);
+    requestAnimationFrame(updateLerpMouse);
 };
-updateLerpMouse();
+requestAnimationFrame(updateLerpMouse);
 
 let hovered = null;
 let clicked = null;
@@ -112,10 +134,14 @@ $('.earth.canvas-wrapper canvas').mousemove((event) => {
     let intersects = raycaster.intersectObjects(markersAndHitboxes);
 
     if (intersects.length > 0) {
+        $('.earth.canvas-wrapper').css({ cursor: 'pointer' });
         let name = intersects[0].object.name;
         let marker = scene.getObjectByName(`${intersects[0].object.name.slice(0, name.length - 1)}m`);
         hovered = marker;
-    } else {hovered = null;}
+    } else {
+        $('.earth.canvas-wrapper').css({ cursor: 'auto' });
+        hovered = null;
+    }
 });
 
 $('.earth.canvas-wrapper canvas').click((event) => {
@@ -169,8 +195,8 @@ renderer.setAnimationLoop(() => {
     });
 
     controls.update();
-    camera.rotateX(Math.sign(lerpMouse.y) * lerpMouse.y ** 2 * 0.1);
-    camera.rotateY(Math.sign(lerpMouse.x) * lerpMouse.x ** 2 * -0.1);
+    camera.rotateX(lerpMouse.y * 0.02 * clamp(camera.aspect, 1, 1.8));
+    camera.rotateY(lerpMouse.x * -0.02 * clamp(camera.aspect, 1, 1.8));
     renderer.render(scene, camera);
     TWEEN.update();
 });

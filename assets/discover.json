@@ -1,128 +1,50 @@
 [
     {
-        "coords": [14.0583, 108.2772],
-        "colors": [[217, 30, 24], [252, 209, 22], [0, 120, 51]],
-        "title": "Vietnam",
-        "description": "Vietnamese cuisine features a delicate balance of flavors with an emphasis on fresh herbs and vegetables. Some popular dishes include pho, banh mi, and spring rolls.",
-        "ingredients": ["Lemongrass", "Long coriander", "Bird’s eye chili"]
-    },
-    {
-        "coords": [39.0742, 21.8243],
-        "colors": [[0, 56, 147], [255, 255, 255], [0, 182, 255]],
-        "title": "Greece",
-        "description": "Greek cuisine is known for its fresh ingredients, including olive oil, cheese, and herbs. Popular dishes include moussaka, tzatziki, and souvlaki.",
-        "ingredients": ["Olive oil", "Feta cheese", "Oregano"]
-    },
-    {
-        "coords": [41.8719, 12.5675],
-        "colors": [[0, 140, 69], [255, 255, 255], [206, 43, 55]],
-        "title": "Italy",
-        "description": "Italian cuisine is renowned for its rich flavors and emphasis on fresh, simple ingredients. Pasta, cheese, and cured meats are staples of Italian cooking.",
-        "ingredients": ["Pasta", "Tomatoes", "Basil"]
-    },
-    {
-        "coords": [20.5937, 78.9629],
-        "colors": [[0, 123, 167], [255, 255, 255], [255, 95, 64]],
-        "title": "India",
-        "description": "Indian cuisine is known for its use of spices and herbs, creating complex and unique flavors. Popular dishes include curry, biryani, and naan bread.",
-        "ingredients": ["Ghee", "Turmeric", "Cumin"]
-    },
-    {
-        "coords": [12.8797, 121.7740],
-        "colors": [[12, 73, 166], [255, 255, 255], [239, 59, 36]],
-        "title": "Philippines",
-        "description": "Filipino cuisine is a fusion of various influences, resulting in a unique blend of sweet, sour, and savory flavors. Some popular dishes include adobo, sinigang, and lechon.",
-        "ingredients": ["Ube", "Calamansi", "Coconut vinegar"]
-    },
-    {
-        "coords": [15.8700, 100.9925],
-        "colors": [[246, 168, 0], [255, 255, 255], [19, 28, 96]],
-        "title": "Thailand",
-        "description": "Thai cuisine is known for its bold and spicy flavors, featuring ingredients like coconut milk, fish sauce, and chili peppers. Popular dishes include pad thai, green curry, and tom yum soup.",
-        "ingredients": ["Coconut milk", "Fish sauce", "Galangal"]
-    },
-    {
-        "coords": [36.2048, 138.2529],
-        "colors": [[255, 0, 0], [255, 255, 255], [0, 0, 0]],
-        "title": "Japan",
-        "description": "Japanese cuisine is characterized by its emphasis on seasonality, freshness, and simplicity. It features a range of ingredients, including rice, seafood, and vegetables.",
-        "ingredients": ["Mirin", "Miso", "Soy Sauce"]
-    },
-    {
-        "coords": [48.3794, 31.1656],
-        "colors": [[0, 204, 255], [255, 204, 0], [255, 255, 255]],
-        "title": "Ukraine",
-        "description": "Ukrainian cuisine is hearty, filling, and flavorful. It features a range of ingredients, including potatoes, meats, and dairy products.",
-        "ingredients": ["Sea Buckthorn Oil", "Brynza (Sheep’s Milk Cheese)", "Horilka (Ukrainian Vodka)"]
-    },
-    {
-        "coords": [35.8617, 104.1954],
-        "colors": [[221, 0, 0], [255, 255, 255], [255, 213, 79]],
-        "title": "China",
-        "description": "Chinese cuisine is diverse and varied, with a range of regional specialties. It features a range of ingredients, including rice, noodles, and vegetables.",
-        "ingredients": ["Soy Sauce", "Tofu", "Five-Spice Powder"]
-    },
-    {
-        "coords": [40.4637, -3.7492],
-        "colors": [[255, 0, 0], [255, 255, 255], [0, 0, 255]],
-        "title": "Spain",
-        "description": "Spanish cuisine is known for its use of fresh, high-quality ingredients and simple, flavorful preparations. It features a range of ingredients, including seafood, meats, and vegetables.",
-        "ingredients": ["Olive Oil", "Sherry Vinegar", "Paprika"]
-    },
-    {
-        "coords": [46.2276, 2.2137],
-        "colors": [[255, 255, 255], [0, 85, 164], [239, 65, 53]],
-        "title": "France",
-        "description": "French cuisine is renowned for its elegance, complexity, and sophistication. It features a range of ingredients, including meats, cheeses, and wines.",
-        "ingredients": ["Cheese", "Dijon Mustard", "Butter", "Truffles"]
-    },
-    {
-        "coords": [23.6345, -102.5528],
-        "colors": [[0, 104, 71], [255, 255, 255], [214, 40, 40]],
-        "title": "Mexico",
-        "description": "Mexican cuisine is known for its bold, spicy flavors and use of fresh, local ingredients. It features a range of ingredients, including meats, beans, and chili peppers.",
-        "ingredients": ["Beans", "Avocados", "Tomatoes", "Corn"]
-    },
-    {
-        "coords": [46.8182, 8.2275],
-        "colors": [[255, 255, 255], [213, 43, 30], [0, 0, 0]],
-        "title": "Switzerland",
-        "description": "Swiss cuisine is influenced by German, French, and Italian traditions. Cheese is a staple ingredient, and dishes like fondue and raclette are popular.",
-        "ingredients": ["Cheese", "Rösti (potato dish)", "Chocolate"]
-    },
-    {
-        "coords": [39.3999, -8.2245],
-        "colors": [[0, 85, 164], [213, 43, 30], [255, 255, 255]],
-        "title": "Portugal",
-        "description": "Portuguese cuisine features seafood, meat dishes, and pastries. Bacalhau (salt cod) is a common ingredient in many dishes.",
-        "ingredients": ["Bacalhau (salt cod)", "Portuguese sausage", "Pastel de nata (custard tart)"]
-    },
-        {
-        "coords": [39.0392, 125.7625],
-        "colors": [[255, 0, 0], [255, 255, 255], [0, 0, 255]],
-        "title": "Korea",
-        "description": "Korean cuisine is known for its spicy and flavorful dishes. Kimchi, a fermented vegetable side dish, is a staple ingredient.",
-        "ingredients": ["Kimchi", "Gochujang (chili paste)", "Soy sauce"]
-        },
-        {
-        "coords": [60.1282, 18.6435],
-        "colors": [[0, 143, 104], [255, 204, 0], [255, 255, 255]],
-        "title": "Sweden",
-        "description": "Swedish cuisine features simple and hearty dishes, often with a focus on fish and dairy products.",
-        "ingredients": ["Herring", "Lingonberry", "Meatballs"]
-        },
-     {
-        "coords": [-25.2744, 133.7751],
-        "colors": [[0, 0, 128], [255, 153, 51], [255, 255, 255]],
-        "title": "Australia",
-        "description": "Australian cuisine is diverse, featuring influences from European, Asian, and Indigenous Australian cultures. Meat pies and fish and chips are popular dishes.",
-        "ingredients": ["Lamingtons (dessert)", "Vegemite (yeast extract)", "Macadamia nuts"]
-        },
-    {
-        "coords": [37.0902, -95.7129],
-        "colors": [[0, 0, 255], [255, 255, 255], [255, 0, 0]],
         "title": "USA",
-        "description": "American cuisine is influenced by many cultures and regions. Barbecue, burgers, and fried chicken are popular dishes.",
-        "ingredients": ["Burgers", "Hot dogs", "Apple pie"]
+        "coords": [39.833332, -98.583336],
+        "colors": [[179, 25, 66], [255, 255, 255], [10, 49, 97]],
+        "description": "American cuisine is a diverse and eclectic cuisine that draws inspiration from a variety of cultural and culinary traditions. It includes a wide range of dishes, such as burgers, hot dogs, fried chicken, apple pie, and barbecue, among others. American cuisine is characterized by its emphasis on comfort and convenience, as well as its use of bold flavors and ingredients. The cuisine has been influenced by the country's history and geography, as well as by immigration and globalization."
+    },
+    {
+        "title": "Mexico",
+        "coords": [23.909094, -102.6334],
+        "colors": [[0, 99, 65], [255, 255, 255], [200, 16, 46]],
+        "description": "Mexican food is renowned for its intense tastes, potent spices, and wide variety of components. Tacos, tamales, guacamole, salsa, mole, and chiles rellenos are a few of the most well-liked meals. A broad range of proteins, including beef, pig, poultry, and seafood, are used in Mexican cooking, along with other common components like beans, maize, and chiles. Mexican cuisine has also been influenced by outside cultures with the most obvious being the Spanish and European tastes introduced during colonization."
+    },
+    {
+        "title": "Italy",
+        "coords": [41.87194, 12.56738],
+        "colors": [[0, 140, 69], [244, 249, 255], [205, 33, 42]],
+        "description": "Italian food is renowned for its vibrant flavors and fresh ingredients. Freshly picked produce, meats, cheeses, and vegetables are frequently used in Italian cuisine. Along with many other meat and seafood dishes, some of the most well-known Italian dishes include pizza, pasta, and risotto. Basil, oregano, rosemary, garlic, and other herbs and spices are frequently used in Italian cooking. In Italian cuisine, olive oil is a basic ingredient that is used for everything from salad dressing to sautéing vegetables. Italian cuisine has a long history that dates back to the Roman Empire, and over the years, it has been influenced by other Mediterranean cuisines like Greek, Spanish, and North African."
+    },
+    {
+        "title": "Greece",
+        "coords": [39.074208, 21.824312],
+        "colors": [[0, 20, 137], [255, 255, 255]],
+        "description": "Greek cuisine is a Mediterranean cuisine that is known for its fresh and healthy ingredients. It includes a wide variety of dishes that are often made with olive oil, fresh vegetables, fish, and lean meats. Some of the most popular Greek dishes include tzatziki, moussaka, spanakopita, and souvlaki, as well as a variety of salads and dips. Greek cuisine is characterized by the use of herbs and spices such as oregano, mint, and cinnamon, which give its dishes their distinctive flavors. The cuisine has been influenced over the centuries by the culinary traditions of neighboring Mediterranean countries, such as Turkey, Italy, and Lebanon, among others."
+    },
+    {
+        "title": "France",
+        "coords": [46.227638, 2.213749],
+        "colors": [[0, 38, 84], [255, 255, 255], [237, 41, 57]],
+        "description": "French cuisine is a sophisticated and refined cuisine that is known for its emphasis on fresh, high-quality ingredients and culinary techniques. It includes a variety of dishes that vary by region, such as coq au vin, ratatouille, escargots, and quiche, among others. French cuisine is characterized by its use of butter, cream, and rich sauces, as well as herbs and spices such as thyme, rosemary, and garlic. The cuisine has been influenced by the country's geography and climate, as well as its cultural and historical traditions. Today, French cuisine is considered one of the finest and most influential cuisines in the world and is celebrated for its elegance, complexity, and attention to detail."
+    },
+    {
+        "title": "India",
+        "coords": [20.593684, 78.96288],
+        "colors": [[255, 153, 51], [255, 255, 255], [19, 136, 8], [0, 0, 128]],
+        "description": "Indian cuisine is a diverse and flavorful cuisine that is known for its use of spices and herbs. It includes a variety of vegetarian and non-vegetarian dishes that vary greatly by region, such as biryani, samosas, naan, and tandoori chicken, among others. Indian cuisine is characterized by the use of aromatic spices such as turmeric, cumin, coriander, and garam masala, which give its dishes their distinctive flavors. The cuisine has been influenced over the centuries by various cultural and religious traditions, as well as by trade and migration."
+    },
+    {
+        "title": "China",
+        "coords": [35.86166, 104.195397],
+        "colors": [[238, 28, 37], [255, 255, 0]],
+        "description": "Chinese cuisine is among the world's oldest and most diverse culinary traditions. It is distinguished by the use of strong flavors, natural ingredients, and a variety of cooking methods like braising, steaming, and stir-frying. Along with rice, noodles, a variety of vegetables, meats, and seafood are frequently found in traditional Chinese dishes. Hot pot, dumplings, Peking duck, and Kung Pao chicken are some of the most well-known Chinese dishes. Over the years, various regional and ethnic cuisines, including Cantonese, Sichuan, Hunan, and Shanghainese, have had an impact on Chinese cuisine."
+    },
+    {
+        "title": "Ethiopia",
+        "coords": [9.145, 40.489673],
+        "colors": [[0, 154, 68], [254, 221, 0], [239, 51, 64], [6, 69, 177]],
+        "description": "Ethiopian cuisine is a unique and flavorful cuisine that is known for its use of spices and distinctive cooking techniques. It includes a variety of dishes that are typically served on injera, a sourdough flatbread made from teff flour. Some of the most popular Ethiopian dishes include doro wat, a spicy chicken stew, and injera with various vegetarian and meat stews, such as misir wat, a spicy lentil stew, and kitfo, a raw beef dish. Ethiopian cuisine is characterized by its use of spices such as berbere, a blend of chili peppers, garlic, and other spices, and mitmita, a mix of chili peppers and spices. The cuisine has been influenced by the country's geography and climate, as well as its cultural and religious traditions."
     }
 ]

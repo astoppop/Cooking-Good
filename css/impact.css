@@ -67,7 +67,6 @@ video.cooking-video {
 }
 
 .impact-title {
-    width: 60rem;
     left: 50%;
     bottom: 50%;
     text-align: center;
@@ -87,9 +86,10 @@ video.cooking-video {
 .impact.bg .impact-text {
     position: fixed;
     width: 50vmax;
-    left: 2vmax;
+    left: 32vw;
     top: 115vmax;
     font-size: 2.5rem;
+    transform: translateX(-50%);
 }
 
 .impact.bg .img-stack {

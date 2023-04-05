@@ -16,8 +16,8 @@ const maskReveal = (element, direction, duration) => {
 // animation function
 // simply calls maskReveal on every span in a paragraph element
 const maskRevealParagraph = (paragraph, direction, duration) => {
-    for (let span of paragraph.children()) {
-        maskReveal($(span), direction, duration);
+    for (let i = 0; i < paragraph.children().length; i++) {
+        setTimeout(maskReveal, i * 2, $(paragraph.children().get(i)), direction, duration);
     }
 };
 
@@ -29,7 +29,7 @@ const adjustTranslate = (element, direction, duration) => {
         duration: duration,
         step: (val) => {
             let adjustedVal = direction == 1 ? 50 - val : val;
-            element.css({ 'transform': `translate(${-adjustedVal}%, ${adjustedVal}%)` });
+            element.css({ 'transform': `translate(-50%, ${adjustedVal}%)` });
         },
     });
 };
@@ -116,7 +116,7 @@ $(window).ready(() => {
             [$('.impact.bg .img-stack'), { top: '150vh' }, { top: '50vh' }, 500, 0],
             [$('.impact.bg .img-stack img.click-icon'), { opacity: '0' }, { opacity: '1' }, 500, 500],
             [$('.impact.bg .img-stack .line'), { top: '105vh' }, { top: '5vh' }, 500, 0],
-            [$('.impact-title'), { 'font-size': '20rem', color: '#000000', width: '60rem', left: '50%', bottom: '50%' }, { 'font-size': '16rem', color: '#ffffff', width: '50rem', left: '1vmax', bottom: '1vmax' }, 400, 100],
+            [$('.impact-title'), { 'font-size': '20rem', color: '#000000', left: '50%', bottom: '50%' }, { 'font-size': '16rem', color: '#ffffff', left: '32vw', bottom: '1vmax' }, 400, 100],
         ],
         [
             [$('.health.bg'), { right: '-100vw' }, { right: '0' }, 500, 0],
@@ -142,15 +142,15 @@ $(window).ready(() => {
     const customPropertyAnimations = [
         [
             [$('.impact.bg .impact-text'), maskRevealParagraph, 300, 400],
-            [$('.impact.bg .img-stack img:nth-child(1)'), maskReveal, 800, 300],
-            [$('.impact.bg .img-stack img:nth-child(2)'), maskReveal, 800, 600],
-            [$('.impact.bg .img-stack img:nth-child(3)'), maskReveal, 800, 900],
-            [$('.impact-title'), adjustTranslate, 400, 100]
+            [$('.impact.bg .img-stack img:nth-child(1)'), maskReveal, 400, 300],
+            [$('.impact.bg .img-stack img:nth-child(2)'), maskReveal, 400, 600],
+            [$('.impact.bg .img-stack img:nth-child(3)'), maskReveal, 400, 900],
+            [$('.impact-title'), adjustTranslate, 400, 100],
         ],
         [
-            [$('.health.bg .img-stack img:nth-child(1)'), maskReveal, 800, 300],
-            [$('.health.bg .img-stack img:nth-child(2)'), maskReveal, 800, 600],
-            [$('.health.bg .img-stack img:nth-child(3)'), maskReveal, 800, 900],
+            [$('.health.bg .img-stack img:nth-child(1)'), maskReveal, 400, 300],
+            [$('.health.bg .img-stack img:nth-child(2)'), maskReveal, 400, 600],
+            [$('.health.bg .img-stack img:nth-child(3)'), maskReveal, 400, 900],
             [$('.health-title'), maskReveal, 400, 0],
         ],
         [
@@ -198,9 +198,6 @@ $(window).ready(() => {
                 type(element, direction, duration);
             }, delay);
         }
-        // hardcaps the time between slides at 1 second
-        // makes the time variable somewhat obsolete but scrolling felt too restrictive
-        time = Math.min(time, 1000);
         setTimeout(() => { inAnimation = false; }, time);
     };
 
