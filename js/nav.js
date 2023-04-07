@@ -1,9 +1,11 @@
-const cutAnimationTime = 500;
+const cutAnimationTime = 750;
 const curtainsAnimationTime = 500;
 const curtainsStartDelay = 1000;
 
 // would like to construct nav bar in this file as well instead of including boilerplate for every html file
 // but curtains must be in html file otherwise there is a split second between loading where there are no curtains
+
+const params = new URLSearchParams(window.location.search);
 
 $(window).ready(() => {
     const nav = $('.nav');
@@ -14,13 +16,15 @@ $(window).ready(() => {
     const trail = $('.cutting-point-trail');
 	const curtains = $('.curtains');
 
+    const needCurtains = !params.has('ingredient');
+    if (!needCurtains) { curtains.hide(); }
+
     setTimeout(() => {
         for (let i = 0; i >= -90; i -= 0.1) {
             setTimeout(() => {
                 $('div', curtains).css('rotate', `${i}deg`);
             }, curtainsAnimationTime / 90 * -i);
         }
-        setTimeout(() => { curtains.show(); }, curtainsAnimationTime);
     }, curtainsStartDelay);
 
     hamburgerBg.click(() => {
@@ -28,6 +32,7 @@ $(window).ready(() => {
         // mask reveal in and fade out
         if (navLinks.is(':hidden')) {
             for (let link of navLinks.children()) {
+                $(link).stop();
                 $(link).css({ opacity: 1 });
                 // adjusted maskReveal from impact.js with obsolete parts deleted
                 $({ x: 100 }).animate({ x: 0 }, {

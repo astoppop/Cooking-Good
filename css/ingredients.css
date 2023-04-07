@@ -1,12 +1,30 @@
-h1, p {
+h1, h2, p {
     margin: 0;
 }
 
+.content {
+    height: 100vh;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+.content::-webkit-scrollbar {
+    height: 10px;
+    background-color: lightblue;
+}
+
+.content::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background-color: rgb(200, 100, 100);
+}
 
 .cover {
-    width: 100%;
-    height: 100vh;
-    background: linear-gradient(to bottom, lightblue, lightcoral);
+    min-width: 100vw;
+    height: calc(100vh - 10px);
+    background: linear-gradient(to right, lightblue, lightcoral);
 }
 
 .cover h1 {
@@ -28,35 +46,140 @@ h1, p {
 }
 
 .layout {
-    width: 100%;
-    height: 100vh;
+    min-width: max-content;
+    height: calc(100vh - 10px);
     background-color: lightcoral;
+
+    display: flex;
 }
 
 .layout .bg {
-    width: 100%;
-    height: 100vh;
-}
-
-.layout .bg .grid {
     position: relative;
-    width: calc(100% - 40px);
-    left: 20px;
+    height: 90vh;
     top: 50%;
     transform: translateY(-50%);
 
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 20px;
+    display: flex;
+    gap: 2vmin;
+}
+
+.placeholder {
+    position: relative;
+    min-width: 90vw;
+    height: 90vh;
+    cursor: pointer;
 }
 
 .card {
-    height: 30vh;
-    border: 1px solid black;
-    border-radius: 10px;
-    /* background-color: black; */
+    position: absolute;
+    width: 100%;
+    height: 90vh;
+
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.card:before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.9) 90%);
 }
 
 .herbs-spices.card {
     background-image: url('../assets/img/ingredients/herbs_and_spices.jpg');
+}
+
+.carbs-grains.card {
+    background-image: url('../assets/img/ingredients/grains.jfif');
+}
+
+.liquids.card {
+    background-image: url('../assets/img/ingredients/oils.webp');
+}
+
+.salt.card {
+    background-image: url('../assets/img/ingredients/salt.webp');
+}
+
+.pepper.card {
+    background-image: url('../assets/img/ingredients/pepper.jpg');
+}
+
+.cinnamon.card {
+    background-image: url('../assets/img/ingredients/cinnamon.jpg');
+}
+
+.ginger.card {
+    background-image: url('../assets/img/ingredients/ginger.jfif');
+}
+
+.garlic.card {
+    background-image: url('../assets/img/ingredients/garlic.jfif');
+}
+
+.rice.card {
+    background-image: url('../assets/img/ingredients/rice.jpg');
+}
+
+.wheat-flour.card {
+    background-image: url('../assets/img/ingredients/wheat_flour.jfif');
+}
+
+.corn-flour.card {
+    background-image: url('../assets/img/ingredients/corn_flour.jpg');
+}
+
+.potatoes.card {
+    background-image: url('../assets/img/ingredients/potatoes.jfif');
+}
+
+.oats.card {
+    background-image: url('../assets/img/ingredients/oats.jfif');
+}
+
+.olive-oil.card {
+    background-image: url('../assets/img/ingredients/olive_oil.jfif');
+}
+
+.soy-sauce.card {
+    background-image: url('../assets/img/ingredients/soy_sauce.jfif');
+}
+
+.cows-milk.card {
+    background-image: url('../assets/img/ingredients/cows_milk.jfif');
+}
+
+.coconut-milk.card {
+    background-image: url('../assets/img/ingredients/coconut_milk.jfif');
+}
+
+.back.card {
+    background-color: #000000;
+}
+
+.card h2 {
+    position: relative;
+    top: 100%;
+    transform: translateY(calc(-100% - 2rem));
+
+    text-align: center;
+    font-size: 5rem;
+    line-height: 5rem;
+    font-family: 'Oswald', sans-serif;
+
+    color: #ffffff;
+}
+
+@media only screen and (min-width: 720px) {
+    .placeholder { min-width: calc((100vw - 6vmin) / 2); }
+}
+
+@media only screen and (min-width: 960px) {
+    .placeholder { min-width: calc((100vw - 8vmin) / 3); }
 }

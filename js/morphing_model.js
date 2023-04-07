@@ -34,7 +34,7 @@ const toLoad = [
     ['../assets/models/mortar_pestle.glb', 0.07, -1],
     ['../assets/models/salt_pepper_condiments.glb', 0.01, -1],
 ];
-const loaded = [];
+const loaded = Array(toLoad.length).fill(0);
 let amtLoaded = 0;
 let currObj = -1;
 
@@ -70,20 +70,22 @@ const switchObject = () => {
     if (currObj >= 0) {root.remove(loaded[currObj]);}
     currObj++;
     if (currObj >= loaded.length) {currObj = 0;}
+    console.log(currObj);
     root.add(loaded[currObj]);
     zoomIn();
-    setTimeout(() => {
-        zoomOut();
-        setTimeout(switchObject, 250);
-    }, 4750);
 };
+setInterval(() => {
+    zoomOut();
+    setTimeout(switchObject, 250);
+}, 5000);
 
 const loader = new GLTFLoader();
-for (let data of toLoad) {
+for (let i = 0; i < toLoad.length; i++) {
+    let data = toLoad[i];
     loader.load(data[0], (glb) => {
         glb.scene.scale.set(data[1], data[1], data[1]);
         glb.scene.position.setY(data[2]);
-        loaded.push(glb.scene);
+        loaded[i] = glb.scene;
         amtLoaded += 1;
         if (amtLoaded == toLoad.length) {switchObject();}
     });
@@ -91,9 +93,9 @@ for (let data of toLoad) {
 
 const rotateRoot = () => {
     root.rotateY(0.02);
-    setTimeout(rotateRoot, 10);
+    requestAnimationFrame(rotateRoot);
 };
-rotateRoot();
+requestAnimationFrame(rotateRoot);
 
 renderer.setAnimationLoop(() => {
     renderer.render(scene, camera);

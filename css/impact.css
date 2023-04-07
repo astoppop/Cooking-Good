@@ -71,7 +71,7 @@ video.cooking-video {
     bottom: 50%;
     text-align: center;
     transform: translate(-50%, 50%);
-    font-size: 20rem;
+    font-size: 20vw;
     font-family: 'Oswald', sans-serif;
 
     color: #000000;
@@ -88,7 +88,7 @@ video.cooking-video {
     width: 50vmax;
     left: 32vw;
     top: 115vmax;
-    font-size: 2.5rem;
+    font-size: 2.25vw;
     transform: translateX(-50%);
 }
 
@@ -126,11 +126,11 @@ video.cooking-video {
 
 .health.bg .health-text {
     position: fixed;
-    width: 45vmax;
+    width: calc(100vw - 40vmax - 15rem);
     left: 140vmax;
     top: 50%;
     transform: translateY(-50%);
-    font-size: 2.5rem;
+    font-size: 2.25vw;
 }
 
 .health.bg .img-stack img {

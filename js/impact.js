@@ -170,7 +170,6 @@ $(window).ready(() => {
     const animationHandler = (index, direction) => {
         if (direction == -1) { index += 1; }
 
-        inAnimation = true;
         // time is the most amount of time a slide's animations will take
         let time = 0;
         for (let animation of animations[index]) {
@@ -217,6 +216,7 @@ $(window).ready(() => {
         // if the new index isn't in bounds ignore it
         // also make sure animation isn't in place, without this there would be no cooldown for scrolling between slides
         if (!inAnimation && -1 <= animationIndex + scrolled && animationIndex + scrolled <= animations.length - 1) {
+            inAnimation = true;
             animationIndex += scrolled;
             animationHandler(animationIndex, scrolled);
         }

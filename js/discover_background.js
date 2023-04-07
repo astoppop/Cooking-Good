@@ -21,7 +21,7 @@ $(window).ready(() => {
     $('.background.canvas-wrapper').append(renderer.domElement);
 });
 
-scene.add(new AmbientLight(new Color('#ffffff'), 0.5));
+scene.add(new AmbientLight(new Color('#ffffff'), 0.8));
 scene.add(new PointLight(new Color('#ffffff'), 0.3));
 
 const objects = new Set();

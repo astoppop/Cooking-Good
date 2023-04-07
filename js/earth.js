@@ -10,31 +10,37 @@ const scene = new Scene();
 const clamp = (num, min, max) => Math.min(Math.max(num, min), max);
 
 const camera = new PerspectiveCamera(45, $(window).innerWidth() / $(window).innerHeight(), 0.1, 1000);
-camera.position.set(0, 0, planetRadius * 5 / clamp(camera.aspect, 1, 1.8));
-console.log(camera.aspect);
+camera.position.set(0, 0, planetRadius * 5 / clamp(camera.aspect, 1.3, 1.5));
 let cameraDist = camera.position.distanceTo(new Vector3(0, 0, 0));
-console.log(camera.aspect);
 
 const renderer = new WebGLRenderer({ antialias: true, alpha: true });
 renderer.setSize($(window).innerWidth(), $(window).innerHeight());
-console.log(camera.aspect);
+
+const controls = new OrbitControls(camera, renderer.domElement);
+
+controls.minDistance = planetRadius * 1.1;
+controls.maxDistance = planetRadius * 5;
+
+controls.dampingFactor = 0.1;
+controls.enableDamping = true;
+controls.enableZoom = true;
+if ($(window).width() > 960) { controls.enableZoom = false; }
+controls.enablePan = false;
+
 $(window).resize(() => {
     camera.aspect = $(window).innerWidth() / $(window).innerHeight();
-    camera.position.set(0, 0, planetRadius * 5 / clamp(camera.aspect, 1, 1.8));
+    camera.position.set(0, 0, planetRadius * 5 / clamp(camera.aspect, 1.3, 1.5));
     cameraDist = camera.position.distanceTo(new Vector3(0, 0, 0));
     camera.updateProjectionMatrix();
     renderer.setSize($(window).innerWidth(), $(window).innerHeight());
+
+    if ($(window).width() > 960) { controls.enableZoom = false; }
+    else { controls.enableZoom = true; }
 });
 
-renderer.outputEncoding = sRGBEncoding;
+// renderer.outputEncoding = sRGBEncoding;
 // renderer.physicallyCorrectLights = true;
 $(window).ready(() => { $('.earth.canvas-wrapper').append(renderer.domElement); });
-
-const controls = new OrbitControls(camera, renderer.domElement);
-controls.dampingFactor = 0.1;
-controls.enableDamping = true;
-controls.enableZoom = false;
-controls.enablePan = false;
 
 const lerp = (start, end, t) => { return start * (1 - t)  + end * t; };
 let velocity = 0;
@@ -46,18 +52,18 @@ const adjustFromScroll = () => {
     let cameraXZDist = Math.sqrt(camera.position.x ** 2 + camera.position.z ** 2);
     let angle = Math.atan2(camera.position.z, camera.position.x);
     let cameraY = camera.position.y;
-    angle += velocity / 1000;
+    angle += velocity / 2000;
     camera.position.set(cameraXZDist * Math.cos(angle), cameraY, cameraXZDist * Math.sin(angle));
-    velocity = lerp(velocity, 0, 0.2);
+    velocity = lerp(velocity, 0, 0.1);
     requestAnimationFrame(adjustFromScroll);
 };
 requestAnimationFrame(adjustFromScroll);
 
-scene.add(new AmbientLight(new Color('#FFFFFF'), 0.8));
+scene.add(new AmbientLight(new Color('#FFFFFF'), 1.25));
 
 let sphere = new Mesh(
     new SphereGeometry(planetRadius, 100, 100),
-    new MeshPhysicalMaterial({ map: await new TextureLoader().loadAsync('../assets/img/earth_map.jpg') }),
+    new MeshPhysicalMaterial({ map: await new TextureLoader().loadAsync('../assets/img/earth_map.webp') }),
 );
 scene.add(sphere);
 
@@ -195,8 +201,9 @@ renderer.setAnimationLoop(() => {
     });
 
     controls.update();
-    camera.rotateX(lerpMouse.y * 0.02 * clamp(camera.aspect, 1, 1.8));
-    camera.rotateY(lerpMouse.x * -0.02 * clamp(camera.aspect, 1, 1.8));
+    camera.position.distanceTo(new Vector3(0, 0, 0));
+    camera.rotateX(lerpMouse.y * 0.02 * clamp(camera.aspect, 1.3, 1.5));
+    camera.rotateY(lerpMouse.x * -0.02 * clamp(camera.aspect, 1.3, 1.5));
     renderer.render(scene, camera);
     TWEEN.update();
 });
