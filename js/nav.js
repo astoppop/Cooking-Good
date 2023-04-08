@@ -5,8 +5,6 @@ const curtainsStartDelay = 1000;
 // would like to construct nav bar in this file as well instead of including boilerplate for every html file
 // but curtains must be in html file otherwise there is a split second between loading where there are no curtains
 
-const params = new URLSearchParams(window.location.search);
-
 $(window).ready(() => {
     const nav = $('.nav');
     const hamburgerBg = $('.hamburger-bg');
@@ -15,9 +13,6 @@ $(window).ready(() => {
     const cuttingPoint = $('.cutting-point');
     const trail = $('.cutting-point-trail');
 	const curtains = $('.curtains');
-
-    const needCurtains = !params.has('ingredient');
-    if (!needCurtains) { curtains.hide(); }
 
     setTimeout(() => {
         for (let i = 0; i >= -90; i -= 0.1) {

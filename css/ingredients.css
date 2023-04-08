@@ -14,6 +14,7 @@ h1, h2, p {
 .content::-webkit-scrollbar {
     height: 10px;
     background-color: lightblue;
+    opacity: 0;
 }
 
 .content::-webkit-scrollbar-thumb {
@@ -67,6 +68,9 @@ h1, h2, p {
     position: relative;
     min-width: 90vw;
     height: 90vh;
+}
+
+.ingredients .placeholder, .placeholder:has(.back)  {
     cursor: pointer;
 }
 
@@ -182,4 +186,26 @@ h1, h2, p {
 
 @media only screen and (min-width: 960px) {
     .placeholder { min-width: calc((100vw - 8vmin) / 3); }
+}
+
+.info {
+    position: fixed;
+    width: 100vw;
+    height: calc(100vh - 10px);
+    left: 0;
+    top: 0;
+}
+
+.info .card {
+    position: absolute;
+    width: 50vw;
+    height: calc(100vh - 10px);
+}
+
+.info .text {
+    position: absolute;
+    width: 50vw;
+    height: calc(100vh - 10px);
+    right: -50vw;
+    background-color: #f8f8f8;
 }

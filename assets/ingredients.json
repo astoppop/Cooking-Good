@@ -1,5 +1,7 @@
 {
     "salt": {
-        
+        "imgPath": "../assets/img/ingredients/salt.webp",
+        "title": "Salt",
+        "description": "Salt is salty"        
     }
 }

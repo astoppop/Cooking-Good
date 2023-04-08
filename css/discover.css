@@ -39,9 +39,20 @@ h1, p {
     font-size: 30vh;
 }
 
-.right-panel {
+.panel {
     position: absolute;
     padding: 20px;
+
+    /* glassmorphism properties */
+    background: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(5px);
+
+    pointer-events: none;
+}
+
+.right.panel {
     width: 25vw;
     height: fit-content;
 
@@ -50,22 +61,54 @@ h1, p {
     top: 50%;
     transform: translateY(-50%);
 
-    pointer-events: none;
-
-    /* glassmorphism properties */
-    background: rgba(255, 255, 255, 0.5);
     border-radius: 15px;
-    box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
-    border: 2px solid rgba(255, 255, 255, 0.6);
-    backdrop-filter: blur(5px);
+    display: none;
 }
 
-.right-panel h1 {
+.bottom.panel {
+    width: calc(100vw - 40px);
+    top: 90vh;
+    
+}
+
+.bottom.panel .expand {
+    height: 10vh;
+}
+
+.bottom.panel .expand .arrow {
+    position: absolute;
+    left: 50%;
+    top: calc(8vh - 20px);
+}
+
+.bottom.panel .expand .arrow:before, .bottom.panel .expand .arrow:after {
+    content: "";
+
+    position: absolute;
+    width: 30px;
+    height: 5px;
+
+    background-color: lightblue;
+}
+
+.bottom.panel .expand .arrow:before {
+    transform: translateX(28%);
+    transform-origin: top right;
+    rotate: 45deg;
+}
+
+.bottom.panel .expand .arrow:after {
+    transform: translateX(-28%);
+    transform-origin: top left;
+    rotate: -45deg;
+}
+
+.panel h1 {
     font-family: 'Oswald', sans-serif;
     font-size: 3rem;
 }
 
-.right-panel p {
+.panel p {
     font-family: 'Oswald', sans-serif;
     font-size: 1.5rem;
 }
@@ -147,4 +190,6 @@ h1, p {
 @media only screen and (min-width: 960px) {
     .background.canvas-wrapper { display: initial; }
     .title { display: initial; }
+    .right.panel { display: initial; }
+    .bottom.panel { display: none; }
 }

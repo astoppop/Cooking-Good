@@ -17,9 +17,9 @@ let popupCloseBg;
 let title;
 
 $(window).ready(() => {
-    rightPanel = $('.right-panel');
-    rightPanelTitle = $('.right-panel h1');
-    rightPanelText = $('.right-panel p');
+    rightPanel = $('.right.panel');
+    rightPanelTitle = $('.right.panel h1');
+    rightPanelText = $('.right.panel p');
 
     popup = $('.popup');
     popupCloseBg = $('.close-bg');
@@ -43,14 +43,12 @@ $(window).ready(() => {
 
 let firstChange = true;
 const changeInformation = (marker) => {
-    rightPanel.animate({ right: '-100vw' }, {
-        duration: 300,
-        complete: () => {
-            rightPanelTitle.text(discoverJson[marker].title);
-            rightPanelText.text(discoverJson[marker].description);
-            rightPanel.animate({ right: '50px' }, 300);
-        },
-    });
+    $('.right.panel').animate({ right: '-100vw' }, 300);
+    setTimeout(() => {
+        $('.panel h1').text(discoverJson[marker].title);
+        $('.panel p').text(discoverJson[marker].description);
+        $('.right.panel').animate({ right: '50px' }, 300);
+    }, 300);
 }
 
 export const onMarkerClick = (marker) => {
