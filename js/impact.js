@@ -102,7 +102,10 @@ $(window).ready(() => {
     let inAnimation = false;
 
     // call functions to turn paragraph into spans, manage image stacks, etc.
-    prepareParagraphMaskReveal($('.impact.text'));
+    prepareParagraphMaskReveal($('.impact.bg .impact.text'));
+    prepareParagraphMaskReveal($('.environment.bg .environment.text'));
+    prepareParagraphMaskReveal($('.money.bg .money.text'));
+    prepareParagraphMaskReveal($('.creative.bg .creative.text'));
     manageImageStackClick($('.impact.bg .img-stack'));
     manageImageStackClick($('.health.bg .img-stack'));
 
@@ -130,12 +133,17 @@ $(window).ready(() => {
         [
             [$('.environment.bg'), { top: '-100vh' }, { top: '0' }, 500, 0],
             [$('.environment.bg .environment.text'), { top: $('.environment.bg .environment.text').height() / 2 - $(window).height() }, { top: '50%' }, 500, 0],
+            [$('.environment.title'), { bottom: '-100vh' }, { bottom: 0 }, 500, 0],
         ],
         [
             [$('.money.bg'), { left: '-100vw' }, { left: '0' }, 500, 0],
+            [$('.money.bg .money.text'), { left: $('.environment.bg .environment.text').width() / 2 - $(window).width() }, { left: '50%' }, 500, 0],
+            [$('.money.title'), { bottom: '-100vh' }, { bottom: 0 }, 500, 0],
         ],
         [
             [$('.creative.bg'), { right: '-100vw' }, { right: '0' }, 500, 0],
+            [$('.creative.bg .creative.text'), { right: $('.environment.bg .environment.text').width() / 2 - $(window).width() }, { right: '50%' }, 500, 0],
+            [$('.creative.title'), { bottom: '-100vh' }, { bottom: 0 }, 500, 0],
         ],
     ];
 
@@ -158,13 +166,13 @@ $(window).ready(() => {
 
         // ],
         [
-
+            [$('.environment.bg .environment.text'), maskRevealParagraph, 300, 400],
         ],
         [
-
+            [$('.money.bg .money.text'), maskRevealParagraph, 300, 400],
         ],
         [
-
+            [$('.creative.bg .creative.text'), maskRevealParagraph, 300, 400],
         ],
     ];
 
