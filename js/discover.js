@@ -30,18 +30,16 @@ $(window).ready(() => {
         })
     });
 
-    title = $('.title');
-    let titleH = $('.title h1');
-    let discoverTitleText = titleH.text();
-    titleH.empty();
-    for (let letter of discoverTitleText) {
-        let span = $('<span>')
-        span.text(letter);
-        titleH.append(span);
-    }
+    setTimeout(() => { $('.title').animate({ left: '50%' }, 2000); }, 500);
+    // let discoverTitleText = titleH.text();
+    // titleH.empty();
+    // for (let letter of discoverTitleText) {
+    //     let span = $('<span>')
+    //     span.text(letter);
+    //     titleH.append(span);
+    // }
 });
 
-let firstChange = true;
 const changeInformation = (marker) => {
     $('.right.panel').animate({ right: '-100vw' }, 300);
     setTimeout(() => {
@@ -54,9 +52,5 @@ const changeInformation = (marker) => {
 export const onMarkerClick = (marker) => {
     targetBackgroundColor = discoverJson[marker].colors;
     imagePath = `../assets/img/discover/${discoverJson[marker].title}`;
-    if (firstChange) {
-        title.animate({right: '-35vmax'}, 300);
-        firstChange = false;
-    }
     changeInformation(marker);
 };

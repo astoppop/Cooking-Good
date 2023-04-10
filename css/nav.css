@@ -105,6 +105,7 @@ body {
     top: 50%;
     transform: translate(-50%, -50%);
     pointer-events: auto;
+    font-family: 'Gluten', cursive;
 }
 
 .link {
@@ -129,11 +130,11 @@ body {
 }
 
 .link span.top span {
-    clip-path: polygon(0 0, 100% 0, 100% 60%, 0 60%);
+    clip-path: polygon(0 0, 100% 0, 100% 50%, 0 50%);
 }
 
 .link span.bottom span {
-    clip-path: polygon(0 60%, 100% 60%, 100% 100%, 0 100%);
+    clip-path: polygon(0 50%, 100% 50%, 100% 100%, 0 100%);
 }
 
 .cutting-point {

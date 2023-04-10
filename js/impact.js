@@ -102,7 +102,7 @@ $(window).ready(() => {
     let inAnimation = false;
 
     // call functions to turn paragraph into spans, manage image stacks, etc.
-    prepareParagraphMaskReveal($('.impact-text'));
+    prepareParagraphMaskReveal($('.impact.text'));
     manageImageStackClick($('.impact.bg .img-stack'));
     manageImageStackClick($('.health.bg .img-stack'));
 
@@ -112,23 +112,24 @@ $(window).ready(() => {
     const animations = [
         [
             [$('.impact.bg'), { bottom: '-100vh' }, { bottom: '0' }, 500, 0],
-            [$('.impact.bg .impact-text'), { top: '115vh' }, { top: '15vh' }, 500, 0],
+            [$('.impact.bg .impact.text'), { top: '115vh' }, { top: '15vh' }, 500, 0],
             [$('.impact.bg .img-stack'), { top: '150vh' }, { top: '50vh' }, 500, 0],
             [$('.impact.bg .img-stack img.click-icon'), { opacity: '0' }, { opacity: '1' }, 500, 500],
             [$('.impact.bg .img-stack .line'), { top: '105vh' }, { top: '5vh' }, 500, 0],
-            [$('.impact-title'), { 'font-size': '20rem', color: '#000000', left: '50%', bottom: '50%' }, { 'font-size': '16rem', color: '#ffffff', left: '32vw', bottom: '1vmax' }, 400, 100],
+            [$('.impact.title'), { 'font-size': '20vw', color: '#000000', left: '50%', bottom: '50%' }, { 'font-size': '16vw', color: '#ffffff', left: '32vw', bottom: '1vmax' }, 400, 100],
         ],
         [
             [$('.health.bg'), { right: '-100vw' }, { right: '0' }, 500, 0],
-            [$('.health.bg .health-text'), { left: '140vmax' }, { left: '40vmax' }, 500, 0],
+            [$('.health.bg .health.text'), { left: '140vmax' }, { left: '40vmax' }, 500, 0],
             [$('.health.bg .img-stack'), { left: '120vmax' }, { left: '20vmax' }, 500, 0],
             [$('.health.bg .img-stack img.click-icon'), { opacity: '0' }, { opacity: '1' }, 500, 500],
         ],
-        [
-            [$('.health-stats-panel'), { top: '-100vh' }, { top: '0' }, 500, 0],
-        ],
+        // [
+        //     [$('.health-stats-panel'), { top: '-100vh' }, { top: '0' }, 500, 0],
+        // ],
         [
             [$('.environment.bg'), { top: '-100vh' }, { top: '0' }, 500, 0],
+            [$('.environment.bg .environment.text'), { top: $('.environment.bg .environment.text').height() / 2 - $(window).height() }, { top: '50%' }, 500, 0],
         ],
         [
             [$('.money.bg'), { left: '-100vw' }, { left: '0' }, 500, 0],
@@ -141,21 +142,21 @@ $(window).ready(() => {
     // jQuery doesn't support certain animations so I pass in a function that does the animation I need
     const customPropertyAnimations = [
         [
-            [$('.impact.bg .impact-text'), maskRevealParagraph, 300, 400],
+            [$('.impact.bg .impact.text'), maskRevealParagraph, 300, 400],
             [$('.impact.bg .img-stack img:nth-child(1)'), maskReveal, 400, 300],
             [$('.impact.bg .img-stack img:nth-child(2)'), maskReveal, 400, 600],
             [$('.impact.bg .img-stack img:nth-child(3)'), maskReveal, 400, 900],
-            [$('.impact-title'), adjustTranslate, 400, 100],
+            [$('.impact.title'), adjustTranslate, 400, 100],
         ],
         [
             [$('.health.bg .img-stack img:nth-child(1)'), maskReveal, 400, 300],
             [$('.health.bg .img-stack img:nth-child(2)'), maskReveal, 400, 600],
             [$('.health.bg .img-stack img:nth-child(3)'), maskReveal, 400, 900],
-            [$('.health-title'), maskReveal, 400, 0],
+            [$('.health.title'), maskReveal, 400, 0],
         ],
-        [
+        // [
 
-        ],
+        // ],
         [
 
         ],

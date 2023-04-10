@@ -64,18 +64,19 @@ const cubeTextureLoader = new CubeTextureLoader();
 const createObject = () => {
     let objType = Math.random();
     let geometry = new BoxGeometry(1, 1, 1);
-    if (objType < 0.45) { geometry = new TorusGeometry(0.5, 0.2, 20, 20, 2 * Math.PI); }
+    if (objType < 0.5) { geometry = new TorusGeometry(0.5, 0.2, 20, 20, 2 * Math.PI); }
     let material = new MeshToonMaterial({ color: new Color(0.9, 0.9, 0.9) });
     let colorVal;
-    if (objType < 0.9) {
-        colorVal = Math.random();
-        let color = targetBackgroundColor[Math.floor(colorVal * targetBackgroundColor.length)];
-        material = new MeshToonMaterial({ color: new Color(color[0] / 255, color[1] / 255, color[2] / 255) });
-    } else if (imagePath != '') {
-        let texture = cubeTextureLoader.load([imagePath + '/usa_flag.webp', imagePath + '/usa_flag.webp', imagePath + '/usa_flag.webp', imagePath + '/usa_flag.webp', imagePath + '/usa_flag.webp', imagePath + '/usa_flag.webp']);
-        console.log(texture);
-        // material = new MeshBasicMaterial({ map: new TextureLoader().loadAsync('../assets/img/earth_map.jpg') });
-    }
+    // if (objType < 0.9) {
+    colorVal = Math.random();
+    let color = targetBackgroundColor[Math.floor(colorVal * targetBackgroundColor.length)];
+    material = new MeshToonMaterial({ color: new Color(color[0] / 255, color[1] / 255, color[2] / 255) });
+    // }
+    // else if (imagePath != '') {
+    //     let texture = cubeTextureLoader.load([imagePath + '/usa_flag.webp', imagePath + '/usa_flag.webp', imagePath + '/usa_flag.webp', imagePath + '/usa_flag.webp', imagePath + '/usa_flag.webp', imagePath + '/usa_flag.webp']);
+    //     console.log(texture);
+    //     // material = new MeshBasicMaterial({ map: new TextureLoader().loadAsync('../assets/img/earth_map.jpg') });
+    // }
     let mesh = new Mesh(
         geometry,
         material,

@@ -32,9 +32,7 @@ $(window).ready(() => {
                 // adjusted maskReveal from impact.js with obsolete parts deleted
                 $({ x: 100 }).animate({ x: 0 }, {
                     duration: 500,
-                    step: (val) => {
-                        $(link).css({ 'clip-path': `polygon(0 ${val}%, 100% ${val}%, 100% 100%, 0 100%)` });
-                    },
+                    step: (val) => { $(link).css({ 'clip-path': `polygon(0 ${val}%, 100% ${val}%, 100% 100%, 0 100%)` }); },
                 });
             }
             navLinks.toggle();
@@ -100,7 +98,7 @@ $(window).ready(() => {
         }, {
             duration: 100,
             easing: 'linear',
-            step: () => {particle.css({ top: cuttingPoint.offset().top + cuttingPoint.height() / 2 - particle.height() / 2 - $(window).scrollTop() })},
+            step: () => { particle.css({ top: cuttingPoint.offset().top + cuttingPoint.height() / 2 - particle.height() / 2 - $(window).scrollTop() }) },
         });
         setTimeout(() => {
             particle.remove();
@@ -118,7 +116,7 @@ $(window).ready(() => {
         let [top, bottom] = text.children();
         cuttingPoint.show();
         cuttingPoint.css({
-            top: `${text.offset().top + text.height() * 0.6 - cuttingPoint.height() / 2 - $(window).scrollTop()}px`,
+            top: `${text.offset().top + text.height() * 0.5 - cuttingPoint.height() / 2 - $(window).scrollTop()}px`,
             right: `-${cuttingPoint.width()}px`,
         });
         cuttingPoint.animate({

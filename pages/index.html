@@ -7,13 +7,15 @@
         <link rel="stylesheet" href="../css/nav.css">
         <link rel="stylesheet" href="../css/index.css">
 
-        <script>history.scrollRestoration = "manual"</script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Chewy&family=Gluten&family=Oswald&display=swap" rel="stylesheet">
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
         <script src="../js/nav.js"></script>
 
         <script src="../js/index.js"></script>
-        <!-- <script type="module" src="../js/morphing_model.js"></script> -->
+        <script type="module" src="../js/sliding_images.js"></script>
     </head>
     
     <body>
@@ -33,12 +35,20 @@
             </div>
         </div>
         <div class="cover">
+            <div class="images">
+                <div class="column"></div>
+                <div class="column"></div>
+                <div class="column"></div> 
+            </div>
             <div class="cover-text">
                 <h1>Cooking<br>Good</h1>
                 <p>Delicious foods while preserving the planet</p>
             </div>
-            <div class="underlay"></div>
-            <div class="canvas-wrapper"></div>
+        </div>
+        <div class="section">
+            <h2>Explore Different Cultures</h2>
+            <p>Use an interactive globe to learn more about different cuisines and foods!</p>
+            <a href="./discover.html"><button>Discover</button></a>
         </div>
     </body>
 </html>

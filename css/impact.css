@@ -66,7 +66,7 @@ video.cooking-video {
     backdrop-filter: blur(8px);
 }
 
-.impact-title {
+.impact.title {
     left: 50%;
     bottom: 50%;
     text-align: center;
@@ -83,7 +83,7 @@ video.cooking-video {
     background-color: #ffa500;
 }
 
-.impact.bg .impact-text {
+.impact.bg .impact.text {
     position: fixed;
     width: 50vmax;
     left: 32vw;
@@ -124,7 +124,7 @@ video.cooking-video {
     top: 50vh;
 }
 
-.health.bg .health-text {
+.health.bg .health.text {
     position: fixed;
     width: calc(100vw - 40vmax - 15rem);
     left: 140vmax;
@@ -145,7 +145,7 @@ video.cooking-video {
     background-color: #ed6969;
 }
 
-.health-title {
+.health.title {
     width: 100vh;
     height: 15rem;
     left: calc(100vw - 15rem);
@@ -163,6 +163,21 @@ video.cooking-video {
 .environment.bg {
     top: -100vh;
     background-color: #008080;
+}
+
+.environment.bg .environment.text {
+    position: fixed;
+    left: 50%;
+    top: calc(50% - 100vh);
+    transform: translate(-50%, -50%);
+    font-size: 1.5vw;
+}
+
+.environment.title {
+    left: 50%;
+    bottom: -100vh;
+    font-size: 15vw;
+    transform: translateX(-50%);
 }
 
 .money.bg {
