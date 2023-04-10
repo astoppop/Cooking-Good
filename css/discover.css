@@ -140,6 +140,16 @@ h1, p {
     cursor: pointer;
 }
 
+.popup h1 {
+    font-family: 'Gluten', cursive;
+    font-size: 3vw;
+}
+
+.popup p {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1vw;;
+}
+
 .close {
     position: absolute;
     top: 70px;
