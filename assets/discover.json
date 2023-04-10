@@ -3,19 +3,19 @@
         "title": "USA",
         "coords": [39.833332, -98.583336],
         "colors": [[179, 25, 66], [255, 255, 255], [10, 49, 97]],
-        "description": "American cuisine is a diverse and eclectic cuisine that draws inspiration from a variety of cultural and culinary traditions. It includes a wide range of dishes, such as burgers, hot dogs, fried chicken, apple pie, and barbecue, among others. American cuisine is characterized by its emphasis on comfort and convenience, as well as its use of bold flavors and ingredients. The cuisine has been influenced by the country's history and geography, as well as by immigration and globalization."
+        "description": "American cuisine is a diverse cuisine that draws inspiration from a variety of cultural and culinary traditions. It includes a wide range of dishes, such as burgers, hot dogs, fried chicken, apple pie, and among other dishes. American cuisine is characterized by its emphasis on convenience and its use of bold flavors. The cuisine has been influenced by the country's history and geography, as well as by globalization."
     },
     {
         "title": "Mexico",
         "coords": [23.909094, -102.6334],
         "colors": [[0, 99, 65], [255, 255, 255], [200, 16, 46]],
-        "description": "Mexican food is renowned for its intense tastes, potent spices, and wide variety of components. Tacos, tamales, guacamole, salsa, mole, and chiles rellenos are a few of the most well-liked meals. A broad range of proteins, including beef, pig, poultry, and seafood, are used in Mexican cooking, along with other common components like beans, maize, and chiles. Mexican cuisine has also been influenced by outside cultures with the most obvious being the Spanish and European tastes introduced during colonization."
+        "description": "Mexican food is known for its intense tastes, spices, and wide variety of components. Tacos, guacamole, salsa, and mole are a few of the most popular meals. A broad range of proteins, including beef, pig, poultry, and seafood, are used in Mexican cooking, along with other common components like beans, maize, and chiles. Mexican cuisine has also been influenced by outside cultures with the most obvious being the Spanish and European tastes introduced during colonization."
     },
     {
         "title": "Italy",
         "coords": [41.87194, 12.56738],
         "colors": [[0, 140, 69], [244, 249, 255], [205, 33, 42]],
-        "description": "Italian food is renowned for its vibrant flavors and fresh ingredients. Freshly picked produce, meats, cheeses, and vegetables are frequently used in Italian cuisine. Along with many other meat and seafood dishes, some of the most well-known Italian dishes include pizza, pasta, and risotto. Basil, oregano, rosemary, garlic, and other herbs and spices are frequently used in Italian cooking. In Italian cuisine, olive oil is a basic ingredient that is used for everything from salad dressing to sautéing vegetables. Italian cuisine has a long history that dates back to the Roman Empire, and over the years, it has been influenced by other Mediterranean cuisines like Greek, Spanish, and North African."
+        "description": "Italian food is renowned for its vibrant flavors and fresh ingredients. Freshly picked produce, meats, cheeses, and vegetables are frequently used in Italian cuisine. Along with many other meat and seafood dishes, some of the most well-known Italian dishes include pizza, pasta, and risotto. Basil, oregano, rosemary, garlic, and other herbs and spices are frequently used in Italian cooking. In Italian cuisine, olive oil is a basic ingredient that is used for everything from salad dressing to sautéing vegetables. Italian cuisine has a long history that dates back to the Roman Empire, but over the years it has been influenced by other Mediterranean cuisines like Greek, Spanish, and North African."
     },
     {
         "title": "Greece",
