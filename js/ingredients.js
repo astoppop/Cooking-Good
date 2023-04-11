@@ -3,25 +3,26 @@ const lerp = (start, end, t) => { return start * (1 - t)  + end * t; };
 
 let infoShown = false;
 
-const mouseTrack = (move, change) => {
-    let coords = [0, 0];
-    let lerpCoords = [0, 0];
+// originially created animations for hovering cards, but just didn't look good, might reimplement
+// const mouseTrack = (move, change) => {
+//     let coords = [0, 0];
+//     let lerpCoords = [0, 0];
 
-    move.mouseleave(() => { coords = [0, 0]; });
+//     move.mouseleave(() => { coords = [0, 0]; });
 
-    move.mousemove((event) => {
-        if (!infoShown) { coords = [((event.clientX - move.get(0).getBoundingClientRect().left) / move.width()) * 2 - 1, -((event.clientY - move.get(0).getBoundingClientRect().top) / move.height()) * 2 + 1]; }
-        else { coords = [0, 0]; }
-    });
-    let track = () => {
-        lerpCoords = [lerp(lerpCoords[0], coords[0], 0.05), lerp(lerpCoords[1], coords[1], 0.05)];
-        // console.log(`center ${lerpCoords[0] * -5}px center ${lerpCoords[1] * 5}px`);
-        change.css('background-position', `center ${lerpCoords[0] * -5}px center ${lerpCoords[1] * 5}px`);
-        requestAnimationFrame(track);
-    };
-    requestAnimationFrame(track);
-};
+//     move.mousemove((event) => {
+//         if (!infoShown) { coords = [((event.clientX - move.get(0).getBoundingClientRect().left) / move.width()) * 2 - 1, -((event.clientY - move.get(0).getBoundingClientRect().top) / move.height()) * 2 + 1]; }
+//         else { coords = [0, 0]; }
+//     });
+//     let track = () => {
+//         lerpCoords = [lerp(lerpCoords[0], coords[0], 0.05), lerp(lerpCoords[1], coords[1], 0.05)];
+//         change.css('background-position', `center ${lerpCoords[0] * -5}px center ${lerpCoords[1] * 5}px`);
+//         requestAnimationFrame(track);
+//     };
+//     requestAnimationFrame(track);
+// };
 
+// create event to show ingredients
 const link = (card, reveal, color) => {
     card.click(() => {
         card.parent().parent().hide();
@@ -50,10 +51,11 @@ $(window).ready(() => {
     $('.info').hide();
     $('.info .card').hide();
 
-    mouseTrack($('.cover'), $('.cover h1'));
-    $('.card').each((i, element) => {
-        mouseTrack($(element), $(element));
-    });
+    // look above for more information
+    // mouseTrack($('.cover'), $('.cover h1'));
+    // $('.card').each((i, element) => {
+    //     mouseTrack($(element), $(element));
+    // });
 
     link($('.herbs-spices.card'), $('.herbs-spices.bg'));
     link($('.carbs-grains.card'), $('.carbs-grains.bg'));
@@ -64,6 +66,7 @@ $(window).ready(() => {
         $('.ingredients.bg').show();
     });
 
+    // eventually will have the ability to click on each ingredient card and get information about that ingredient
     // $('.card:not(.info .card)').click((event) => {
     //     let target = $(event.currentTarget);
     //     if (!target.parent().parent().is($('.ingredients.bg')) && !target.hasClass('back')) {
@@ -97,6 +100,8 @@ $(window).ready(() => {
     //     }
     // });
 
+    // allow horizontal scrolling when using a vertical scroll wheel
+    // need this system for smoother scrolling
     let velocity = 0;
     $(window).on('wheel', (event) => {
         velocity += event.originalEvent.deltaY;

@@ -10,22 +10,17 @@ const imageFiles = [
 $(window).ready(() => {
     let images = [];
 
-    const handleImages = () => {
-        // for (let )
-        requestAnimationFrame(handleImages);
-    };
-    requestAnimationFrame(handleImages);
-
     let counter = 200;
     const createImages = () => {
         if (counter == 200) {
             for (let i = 0; i < $('.cover .images').children().length; i++) {
                 setTimeout(() => {
+                    // create image and randomly choose source from imageFiles
                     let image = $('<img>');
                     images.push(image);
                     image.attr('src', `../assets/img/index/${imageFiles[Math.floor(Math.random() * imageFiles.length)]}`);
                     $($('.cover .images').children().get(i)).append(image);
-                    console.log(image.height());
+                    // animate going up
                     image.animate({ top: 0 }, {
                         duration: 8000,
                         easing: 'linear',

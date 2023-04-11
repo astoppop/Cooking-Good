@@ -7,24 +7,10 @@ fetch('../assets/discover.json')
     .then(response => {return response.json();})
     .then(json => {discoverJson = json;});
 
-let rightPanel;
-let rightPanelTitle;
-let rightPanelText;
-
-let popup;
-let popupCloseBg;
-
-let title;
-
 $(window).ready(() => {
-    rightPanel = $('.right.panel');
-    rightPanelTitle = $('.right.panel h1');
-    rightPanelText = $('.right.panel p');
-
-    popup = $('.popup');
-    popupCloseBg = $('.close-bg');
-    popupCloseBg.click(() => {
-        popup.animate({ opacity: 0 }, {
+    // close directions
+    $('.close-bg').click(() => {
+        $('.popup').animate({ opacity: 0 }, {
             duration: 500,
             complete: () => { popup.hide(); },
         })
@@ -41,16 +27,20 @@ $(window).ready(() => {
 });
 
 const changeInformation = (marker) => {
+    // move right panel away
     $('.right.panel').animate({ right: '-100vw' }, 300);
     setTimeout(() => {
+        // change text
         $('.panel h1').text(discoverJson[marker].title);
         $('.panel p').text(discoverJson[marker].description);
+        // move right panel back in
         $('.right.panel').animate({ right: '50px' }, 300);
     }, 300);
 }
 
 export const onMarkerClick = (marker) => {
+    // changes target color
     targetBackgroundColor = discoverJson[marker].colors;
-    imagePath = `../assets/img/discover/${discoverJson[marker].title}`;
+    // change panels
     changeInformation(marker);
 };

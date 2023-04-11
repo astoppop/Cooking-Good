@@ -44,11 +44,6 @@ $(window).ready(() => {
         }
     });
 
-    const homeLink = $('.link.home');
-    const discoverLink = $('.link.discover');
-    const ingredientsLink = $('.link.ingredients');
-    const impactLink = $('.link.impact');
-
     // convert a div's text into two spans with the same text
     const prepareParagraphCut = (p) => {
         let text = p.text();
@@ -80,11 +75,12 @@ $(window).ready(() => {
         }
     };
     
-    prepareParagraphCut(homeLink);
-    prepareParagraphCut(discoverLink);
-    prepareParagraphCut(ingredientsLink);
-    prepareParagraphCut(impactLink);
+    prepareParagraphCut($('.link.home'));
+    prepareParagraphCut($('.link.discover'));
+    prepareParagraphCut($('.link.ingredients'));
+    prepareParagraphCut($('.link.impact'));
 
+    // create particles for cutting animation
     const createParticle = () => {
         let particle = $('<div>');
         trail.append(particle);
@@ -105,6 +101,7 @@ $(window).ready(() => {
         }, 100);
     };
 
+    // translate the two parts of each letter to look like the letter was cut
     const cutLetter = (top, bottom) => {
         if (top.offset().left > cuttingPoint.offset().left) {
             top.css('transform', 'translateY(-3px)');
@@ -112,8 +109,10 @@ $(window).ready(() => {
         }
     };
 
+    // cut a word
     const cut = (text, link) => {
         let [top, bottom] = text.children();
+        // show cutting trail and start animations
         cuttingPoint.show();
         cuttingPoint.css({
             top: `${text.offset().top + text.height() * 0.5 - cuttingPoint.height() / 2 - $(window).scrollTop()}px`,
@@ -126,12 +125,14 @@ $(window).ready(() => {
             easing: 'linear',
             step: () => {
                 createParticle();
+                // when the head of the cutting trail reaches letter, cut letter
                 for (let i = 0; i < $(top).children().length; i++) {
                     cutLetter($($(top).children().get(i)), $($(bottom).children().get(i)));
                 }
             },
         });
         
+        // curtains animation to go to next link
 		setTimeout(() => {
 			curtains.show();
             for (let i = -90; i <= 0; i += 0.1) {
@@ -148,16 +149,16 @@ $(window).ready(() => {
     navLinks.click((event) => {
         switch ($(event.target).attr('id')) {
             case 'Home':
-                cut(homeLink, './index.html');
+                cut($('.link.home'), './index.html');
                 return;
             case 'Discover':
-                cut(discoverLink, './discover.html');
+                cut($('.link.discover'), './discover.html');
                 return;
             case 'Ingredients':
-                cut(ingredientsLink, './ingredients.html');
+                cut($('.link.ingredients'), './ingredients.html');
                 return;
             case 'Impact':
-                cut(impactLink, './impact.html');
+                cut($('.link.impact'), './impact.html');
                 return;
         }
     });

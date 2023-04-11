@@ -5,11 +5,13 @@ import { OrbitControls } from 'https://cdn.skypack.dev/three-stdlib@2.8.5/contro
 import { TWEEN } from 'https://unpkg.com/three@0.139.0/examples/jsm/libs/tween.module.min.js';
 import { onMarkerClick } from './discover.js';
 
+// three js boilerplate
 const scene = new Scene();
 
 const clamp = (num, min, max) => Math.min(Math.max(num, min), max);
 
 const camera = new PerspectiveCamera(45, $(window).innerWidth() / $(window).innerHeight(), 0.1, 1000);
+// clamp too make sure earth never gets too small
 camera.position.set(0, 0, planetRadius * 5 / clamp(camera.aspect, 1.3, 1.5));
 let cameraDist = camera.position.distanceTo(new Vector3(0, 0, 0));
 
@@ -38,10 +40,10 @@ $(window).resize(() => {
     else { controls.enableZoom = true; }
 });
 
-// renderer.outputEncoding = sRGBEncoding;
-// renderer.physicallyCorrectLights = true;
 $(window).ready(() => { $('.earth.canvas-wrapper').append(renderer.domElement); });
 
+// rotate earth on scroll
+// lerp used to smooth scrolling
 const lerp = (start, end, t) => { return start * (1 - t)  + end * t; };
 let velocity = 0;
 $(window).on('wheel', (event) => {
@@ -61,6 +63,7 @@ requestAnimationFrame(adjustFromScroll);
 
 scene.add(new AmbientLight(new Color('#FFFFFF'), 1.25));
 
+// create globe
 let sphere = new Mesh(
     new SphereGeometry(planetRadius, 100, 100),
     new MeshPhysicalMaterial({ map: await new TextureLoader().loadAsync('../assets/img/earth_map.webp') }),
@@ -70,11 +73,13 @@ scene.add(sphere);
 let markers = [];
 let markersAndHitboxes = [];
 
+// create markers
 const createMarker = (lat, lon) => {
     let latRad = lat * (Math.PI / 180);
     let lonRad = -lon * (Math.PI / 180);
     let pos = new Vector3(Math.cos(latRad) * Math.cos(lonRad) * planetRadius, Math.sin(latRad) * planetRadius, Math.cos(latRad) * Math.sin(lonRad) * planetRadius);
     
+    // ring serves as marker
     let marker = new Mesh(
         new RingGeometry(planetRadius / 60, planetRadius / 30, 20),
         new MeshBasicMaterial({
@@ -83,6 +88,7 @@ const createMarker = (lat, lon) => {
             transparent: true,
         }),
     );
+    // need circle hitbox as hovering hole of ring doesn't show in raycast
     let markerHitbox = new Mesh(
         new CircleGeometry(planetRadius / 30, 20),
         new MeshBasicMaterial({
@@ -99,7 +105,8 @@ const createMarker = (lat, lon) => {
 
     scene.add(marker);
     scene.add(markerHitbox);
-
+    
+    // make sure marker orientation is correct
     marker.lookAt(marker.position.clone().multiply(new Vector3(2, 2, 2)));
     markerHitbox.lookAt(marker.position.clone().multiply(new Vector3(2, 2, 2)));
 
@@ -108,6 +115,7 @@ const createMarker = (lat, lon) => {
     markersAndHitboxes.push(markerHitbox);
 };
 
+// fetch json data and use createMarker to create all the markers
 fetch('../assets/discover.json')
     .then(response => {return response.json();})
     .then(json => {
@@ -132,6 +140,7 @@ requestAnimationFrame(updateLerpMouse);
 let hovered = null;
 let clicked = null;
 
+// check raycast for hovers
 $('.earth.canvas-wrapper canvas').mousemove((event) => {
     mouse.x = (event.clientX / $(window).innerWidth()) * 2 - 1;
     mouse.y = -(event.clientY / $(window).innerHeight()) * 2 + 1;
@@ -150,6 +159,7 @@ $('.earth.canvas-wrapper canvas').mousemove((event) => {
     }
 });
 
+// check raycast for clicks
 $('.earth.canvas-wrapper canvas').click((event) => {
     mouse.x = (event.clientX / $(window).innerWidth()) * 2 - 1;
     mouse.y = -(event.clientY / $(window).innerHeight()) * 2 + 1;
@@ -165,6 +175,7 @@ $('.earth.canvas-wrapper canvas').click((event) => {
         controls.enabled = false;
         let markerDist = marker.position.distanceTo(new Vector3(0, 0, 0));
         let positionRatio = cameraDist / markerDist;
+        // move camera to marker
         new TWEEN.Tween(camera.position)
             .to({ x: marker.position.x * positionRatio, y: marker.position.y * positionRatio, z: marker.position.z * positionRatio }, 1000)
             .easing(TWEEN.Easing.Quadratic.InOut)
@@ -183,6 +194,8 @@ renderer.setAnimationLoop(() => {
         let innerRadius = marker.geometry.parameters.innerRadius;
         let outerRadius = marker.geometry.parameters.outerRadius;
 
+        // if a marker is hovered or click do hover / click animation
+        // else marker should be moving toward or is at rest
         if (marker === hovered || marker === clicked) {
             if (innerRadius > 0) {
                 marker.geometry = new RingGeometry(innerRadius - (planetRadius / 600), outerRadius + (planetRadius / 1920), 20);
@@ -202,6 +215,7 @@ renderer.setAnimationLoop(() => {
 
     controls.update();
     camera.position.distanceTo(new Vector3(0, 0, 0));
+    // move camera based on mouse position
     camera.rotateX(lerpMouse.y * 0.02 * clamp(camera.aspect, 1.3, 1.5));
     camera.rotateY(lerpMouse.x * -0.02 * clamp(camera.aspect, 1.3, 1.5));
     renderer.render(scene, camera);
