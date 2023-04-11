@@ -1,8 +1,5 @@
-:root {
-    --main-color: #F5F5DC;
-    --secondary-color: #FFDB58;
-    --main-text-color: #000000;
-    --secondary-text-color: #8B4513;
+body {
+    overflow-x: hidden;
 }
 
 h1, h2, p {
@@ -12,7 +9,7 @@ h1, h2, p {
 .cover {
     width: 100%;
     height: 100vh;
-    background-color: var(--main-color);
+    background-color: #f5f5dc;
 }
 
 .cover .images {
@@ -52,13 +49,13 @@ h1, h2, p {
 }
 
 .cover-text h1 {
-    color: var(--main-text-color);
+    color: #ffdb58;
     font-size: 10vw;
     font-family: 'Chewy', cursive;
 }
 
 .cover-text p {
-    color: var(--secondary-text-color);
+    color: #8B4513;
     font-size: 2vw;
 }
 
@@ -82,6 +79,12 @@ h1, h2, p {
     border-radius: 5vh;
     font-size: 3vw;
     cursor: pointer;
+}
+
+.canvas-wrapper {
+    position: absolute;
+    width: 100%;
+    height: 100vh;
 }
 
 @media only screen and (min-width: 720px) {
