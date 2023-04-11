@@ -1,4 +1,4 @@
-import { TextureLoader, Color, Mesh, BoxGeometry, MeshBasicMaterial, MeshToonMaterial, AmbientLight, PointLight, Scene, PerspectiveCamera, WebGLRenderer, TorusGeometry, CubeTextureLoader } from 'https://cdn.skypack.dev/three@0.137';
+import { TextureLoader, Color, Mesh, BoxGeometry, MeshBasicMaterial, MeshToonMaterial, AmbientLight, HemisphereLight, DirectionalLight, Scene, PerspectiveCamera, WebGLRenderer, sRGBEncoding, LinearToneMapping } from 'https://cdn.skypack.dev/three@0.137';
 import { OrbitControls } from 'https://cdn.skypack.dev/three-stdlib@2.8.5/controls/OrbitControls';
 import { TWEEN } from 'https://unpkg.com/three@0.139.0/examples/jsm/libs/tween.module.min.js';
 import { GLTFLoader } from 'https://cdn.skypack.dev/three-stdlib@2.8.5/loaders/GLTFLoader';
@@ -10,7 +10,9 @@ camera.position.set(0, 0, 20);
 camera.lookAt(0, 0);
 
 const renderer = new WebGLRenderer({ antialias: true, alpha: true });
-renderer.physicallyCorrectLights = true;
+// renderer.physicallyCorrectLights = true;
+renderer.outputEncoding = sRGBEncoding;
+renderer.toneMapping = LinearToneMapping;
 renderer.setSize($(window).outerWidth(), $(window).height());
 
 const controls = new OrbitControls(camera, renderer.domElement);
@@ -23,7 +25,11 @@ $(window).resize(() => {
 
 $(window).ready(() => { $('.scrolling-kitchen.canvas-wrapper').append(renderer.domElement); });
 
-scene.add(new AmbientLight(new Color('#ffffff'), 2));
+scene.add(new AmbientLight(new Color('#ffffff'), 0.3));
+scene.add(new HemisphereLight(new Color('#ffffff'), new Color('#ffffff'), 0.5));
+const directionalLight = new DirectionalLight(new Color('#ffffff'), 1.5);
+directionalLight.position.set(-5, 0, 10);
+scene.add(directionalLight);
 
 const loader = new GLTFLoader();
 loader.load('../assets/kitchen.glb', (glb) => {
@@ -35,4 +41,5 @@ renderer.setAnimationLoop(() => {
     controls.update();
     renderer.render(scene, camera);
     TWEEN.update();
+    console.log(camera.position);
 });
