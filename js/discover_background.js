@@ -18,9 +18,7 @@ $(window).resize(() => {
     renderer.setSize($(window).outerWidth(), $(window).height());
 });
 
-$(window).ready(() => {
-    $('.background.canvas-wrapper').append(renderer.domElement);
-});
+$(window).ready(() => { $('.background.canvas-wrapper').append(renderer.domElement); });
 
 scene.add(new AmbientLight(new Color('#ffffff'), 0.8));
 // point light for shadows
@@ -64,12 +62,17 @@ const Object = class {
     }
 };
 
+const cachedGeometries = [
+    new BoxGeometry(1, 1, 1),
+    new TorusGeometry(0.5, 0.2, 20, 20, 2 * Math.PI),
+];
+
 const cubeTextureLoader = new CubeTextureLoader();
 const createObject = () => {
     let objType = Math.random();
     // either cube or torus
-    let geometry = new BoxGeometry(1, 1, 1);
-    if (objType < 0.5) { geometry = new TorusGeometry(0.5, 0.2, 20, 20, 2 * Math.PI); }
+    let geometry = cachedGeometries[0];
+    if (objType < 0.5) { geometry = cachedGeometries[1]; }
     // base color
     let material = new MeshToonMaterial({ color: new Color(0.9, 0.9, 0.9) });
     let colorVal;

@@ -188,7 +188,7 @@ $('.earth.canvas-wrapper canvas').click((event) => {
     }
 });
 
-renderer.setAnimationLoop(() => {
+const updateMarkers  = () => {
     markers.forEach(marker => {
         let markerHitbox = scene.getObjectByName(`${marker.name.slice(0, name.length - 1)}h`);
         let innerRadius = marker.geometry.parameters.innerRadius;
@@ -212,7 +212,11 @@ renderer.setAnimationLoop(() => {
             }
         }
     });
+    requestAnimationFrame(updateMarkers);
+};
+requestAnimationFrame(updateMarkers);
 
+renderer.setAnimationLoop(() => {
     controls.update();
     camera.position.distanceTo(new Vector3(0, 0, 0));
     // move camera based on mouse position
