@@ -48,7 +48,7 @@ $(window).scroll((event) => {
     let scrollArea = $('body').height() - $(window).height() - $('.section').height() - 100;
     let cameraIndex = $(window).scrollTop() - $(window).height() * 2 - $('.section').height() - 100;
     if (cameraIndex / scrollArea > 0.5) {
-        alert(cameraIndex / scrollArea);
+        // alert(cameraIndex / scrollArea);
     }
 });
 
