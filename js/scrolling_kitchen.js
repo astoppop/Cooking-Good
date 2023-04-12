@@ -35,10 +35,21 @@ loader.load('../assets/kitchen.glb', (glb) => {
     scene.add(glb.scene);
 });
 
+const cameraPositions = [
+    [[10, 20, 10], [10, 10, 10], 10],
+    [[10, 10, 10], [10, 20, 10], 30],
+];
+let totalPositionWeight = 0;
+for (let position of cameraPositions) { totalPositionWeight += position[2]; }
+
 $(window).scroll((event) => {
-    // console.log($(window).scrollTop());
-    // if ($(window).scrollTop() >= $(window).height() + $('.section').height() + 100) { $('.scrolling-kitchen.canvas-wrapper').css({ 'position': 'fixed' }); }
-    // else { $('.scrolling-kitchen.canvas-wrapper').css({ 'position': 'static' }); }
+    if ($(window).scrollTop() >= $(window).height() + $('.section').height() + 100) { $('.scrolling-kitchen.canvas-wrapper').css({ 'position': 'fixed' }); }
+    else { $('.scrolling-kitchen.canvas-wrapper').css({ 'position': 'static' }); }
+    let scrollArea = $('body').height() - $(window).height() - $('.section').height() - 100;
+    let cameraIndex = $(window).scrollTop() - $(window).height() * 2 - $('.section').height() - 100;
+    if (cameraIndex / scrollArea > 0.5) {
+        alert(cameraIndex / scrollArea);
+    }
 });
 
 renderer.setAnimationLoop(() => {
