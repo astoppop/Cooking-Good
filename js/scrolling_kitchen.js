@@ -6,8 +6,7 @@ import { GLTFLoader } from 'https://cdn.skypack.dev/three-stdlib@2.8.5/loaders/G
 // three js boilerplate
 const scene = new Scene();
 const camera = new PerspectiveCamera(45, $(window).outerWidth() / $(window).height(), 0.1, 100);
-camera.position.set(0, 0, 20);
-camera.lookAt(0, 0);
+camera.position.set(10, 20, 10);
 
 const renderer = new WebGLRenderer({ antialias: true, alpha: true });
 // renderer.physicallyCorrectLights = true;
@@ -27,8 +26,8 @@ $(window).ready(() => { $('.scrolling-kitchen.canvas-wrapper').append(renderer.d
 
 scene.add(new AmbientLight(new Color('#ffffff'), 0.3));
 scene.add(new HemisphereLight(new Color('#ffffff'), new Color('#ffffff'), 0.5));
-const directionalLight = new DirectionalLight(new Color('#ffffff'), 1.5);
-directionalLight.position.set(-5, 0, 10);
+const directionalLight = new DirectionalLight(new Color('#ffffff'), 1);
+directionalLight.position.set(-3, 0, 10);
 scene.add(directionalLight);
 
 const loader = new GLTFLoader();
@@ -36,10 +35,13 @@ loader.load('../assets/kitchen.glb', (glb) => {
     scene.add(glb.scene);
 });
 
+$(window).scroll((event) => {
+    console.log(event);
+});
 
 renderer.setAnimationLoop(() => {
     controls.update();
     renderer.render(scene, camera);
     TWEEN.update();
-    console.log(camera.position);
+    // console.log(camera.position);
 });
