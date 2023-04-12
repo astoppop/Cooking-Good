@@ -1,4 +1,5 @@
 body {
+    /* height: 500vh; */
     overflow-x: hidden;
 }
 
@@ -82,9 +83,10 @@ h1, h2, p {
 }
 
 .canvas-wrapper {
-    position: absolute;
+    position: static;
     width: 100%;
     height: 100vh;
+    top: 0;
 }
 
 @media only screen and (min-width: 720px) {

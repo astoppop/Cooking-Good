@@ -36,7 +36,9 @@ loader.load('../assets/kitchen.glb', (glb) => {
 });
 
 $(window).scroll((event) => {
-    console.log(event);
+    // console.log($(window).scrollTop());
+    // if ($(window).scrollTop() >= $(window).height() + $('.section').height() + 100) { $('.scrolling-kitchen.canvas-wrapper').css({ 'position': 'fixed' }); }
+    // else { $('.scrolling-kitchen.canvas-wrapper').css({ 'position': 'static' }); }
 });
 
 renderer.setAnimationLoop(() => {
