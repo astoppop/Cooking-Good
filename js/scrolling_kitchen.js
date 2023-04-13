@@ -1,4 +1,4 @@
-import { TextureLoader, Color, Mesh, BoxGeometry, MeshBasicMaterial, MeshToonMaterial, AmbientLight, HemisphereLight, DirectionalLight, Scene, PerspectiveCamera, WebGLRenderer, sRGBEncoding, LinearToneMapping } from 'https://cdn.skypack.dev/three@0.137';
+import { Vector2, Color, Mesh, BoxGeometry, MeshBasicMaterial, MeshToonMaterial, AmbientLight, HemisphereLight, DirectionalLight, Scene, PerspectiveCamera, WebGLRenderer, sRGBEncoding, LinearToneMapping } from 'https://cdn.skypack.dev/three@0.137';
 import { OrbitControls } from 'https://cdn.skypack.dev/three-stdlib@2.8.5/controls/OrbitControls';
 import { TWEEN } from 'https://unpkg.com/three@0.139.0/examples/jsm/libs/tween.module.min.js';
 import { GLTFLoader } from 'https://cdn.skypack.dev/three-stdlib@2.8.5/loaders/GLTFLoader';
@@ -6,7 +6,7 @@ import { GLTFLoader } from 'https://cdn.skypack.dev/three-stdlib@2.8.5/loaders/G
 // three js boilerplate
 const scene = new Scene();
 const camera = new PerspectiveCamera(45, $(window).outerWidth() / $(window).height(), 0.1, 100);
-camera.position.set(10, 20, 10);
+camera.rotation.order = 'YXZ';
 
 const renderer = new WebGLRenderer({ antialias: true, alpha: true });
 renderer.outputEncoding = sRGBEncoding;
@@ -63,35 +63,60 @@ const getInfo = (data, index) => {
 
 // weight, from, to
 const cameraPositions = convertWeights([
-    [10, [10, 10, 10], [10, 10, 10]],
-    [20, [10, 10, 10], [3, 5, 10]],
-    [20, [3, 5, 10], [3, 2.5, 5]],
-    [20, [3, 2.5, 5], [3, 2.5, -3]],
-    [20, [3, 2.5, -3], [1, 5, -3]],
+    [10, [10, 10, 10], [10, 5, 10]],
+    [10, [10, 5, 10], [3, 5, 10]],
+    [10, [3, 5, 10], [2.5, 2.5, 5]],
+    [40, [2.5, 2.5, 5], [2.5, 2.5, -2]],
+    [40, [2.5, 2.5, -2], [2, 3.5, -2.25]],
+    [100, [2, 3.5, -2.25], [1, 4.5, -2]],
+    [100, [1, 4.5, -2], [1, 4.5, 0]],
 ]);
 
 const cameraRotations = convertWeights([
-    [10, [0, 30, 30], [0, 0, 0]],
-    // [10, [0, 0, 0], [0, 0, 0]],
+    [20, [-30, 45, 0], [0, 0, 0]],
+    [30, [0, 0, 0], [0, 0, 0]],
+    [20, [0, 0, 0], [0, 80, 0]],
+    [70, [0, 80, 0], [0, 90, 0]],
+    [170, [0, 90, 0], [0, 90, 0]],
 ]);
 
-$(window).scroll((event) => {
-    if ($(window).scrollTop() >= $(window).height() + $('.section').height() + 100) { $('.scrolling-kitchen.canvas-wrapper').css({ 'position': 'fixed' }); }
-    else { $('.scrolling-kitchen.canvas-wrapper').css({ 'position': 'static' }); }
-    
+const updateCamera = () => {
     let scrollArea = $('body').height() - $(window).height() * 2 - $('.section').height() - 100;
     let decimalScroll = $(window).scrollTop() - $(window).height() - $('.section').height() - 100;
     
     let positionInfo = getInfo(cameraPositions, (decimalScroll / scrollArea) * cameraPositions[cameraPositions.length - 1][0]);
     camera.position.set(positionInfo[0], positionInfo[1], positionInfo[2]);
     let rotationInfo = getInfo(cameraRotations, (decimalScroll / scrollArea) * cameraRotations[cameraRotations.length - 1][0]);
-    console.log(rotationInfo);
     camera.rotation.set(rotationInfo[0] * Math.PI / 180, rotationInfo[1] * Math.PI / 180, rotationInfo[2] * Math.PI / 180);
+};
+
+$(window).scroll((event) => {
+    if ($(window).scrollTop() >= $(window).height() + $('.section').height() + 100) { $('.scrolling-kitchen.canvas-wrapper').css({ 'position': 'fixed' }); }
+    else { $('.scrolling-kitchen.canvas-wrapper').css({ 'position': 'static' }); }
 });
 
-renderer.setAnimationLoop(() => {
-    // controls.update();
-    renderer.render(scene, camera);
-    TWEEN.update();
-    // console.log(camera.rotation);
+const mouse = new Vector2();
+const lerpMouse = new Vector2();
+
+// update lerp mouse
+const updateLerpMouse = () => {
+    lerpMouse.lerp(mouse, 0.05);
+    requestAnimationFrame(updateLerpMouse);
+};
+requestAnimationFrame(updateLerpMouse);
+
+$('.scrolling-kitchen.canvas-wrapper').mousemove((event) => {
+    mouse.x = (event.clientX / $(window).innerWidth()) * 2 - 1;
+    mouse.y = -(event.clientY / $(window).innerHeight()) * 2 + 1;
+});
+
+$(window).ready(() => {
+    renderer.setAnimationLoop(() => {
+        updateCamera();
+        camera.rotateX(lerpMouse.y * 0.1);
+        camera.rotateY(lerpMouse.x * -0.1);
+        renderer.render(scene, camera);
+        TWEEN.update();
+        // console.log(camera.rotation);
+    });
 });
