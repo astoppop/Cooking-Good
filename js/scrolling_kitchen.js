@@ -69,7 +69,7 @@ const cameraPositions = convertWeights([
     [20, [2, 2.5, -2], [1, 4.5, -2]],
     [20, [1, 4.5, -2], [1, 4.5, 0]],
     [10, [1, 4.5, 0], [1, 4.5, 5]],
-    [10, [1, 4.5, 0], [1, 4.5, 5]],
+    [10, [1, 4.5, 5], [1, 4.5, 5]],
 ]);
 
 const cameraRotations = convertWeights([

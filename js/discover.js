@@ -12,9 +12,11 @@ $(window).ready(() => {
     $('.close-bg').click(() => {
         $('.popup').animate({ opacity: 0 }, {
             duration: 500,
-            complete: () => { popup.hide(); },
+            complete: () => { $('.popup').hide(); },
         })
     });
+
+    $('.bottom.panel').click(() => { $('.bottom.panel').toggleClass('toggle'); });
 
     setTimeout(() => { $('.title').animate({ left: '50%' }, 2000); }, 500);
     // let discoverTitleText = titleH.text();

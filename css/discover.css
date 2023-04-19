@@ -56,9 +56,13 @@ h1, p {
 }
 
 .bottom.panel {
+    pointer-events: auto;
     width: calc(100vw - 40px);
-    top: 90vh;
-    
+    bottom: -80vh;
+}
+
+.bottom.panel.toggle {
+    bottom: 0;
 }
 
 .bottom.panel .expand {
